@@ -32,5 +32,7 @@ public class OpeningScreen extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+
+        //How do you like them apples you gigantic phaggot
     }
 }

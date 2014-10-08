@@ -34,5 +34,6 @@ public class OpeningScreen extends Activity {
         return super.onOptionsItemSelected(item);
 
         //How do you like them apples you gigantic phaggot
+        //Drullaðu upp í þig hóran þín
     }
 }

@@ -33,7 +33,7 @@ public class OpeningScreen extends Activity {
         }
         return super.onOptionsItemSelected(item);
 
-        //How do you like them apples you gigantic phaggot
+        //How do you like them apples you gigantic phaggott
         //Drullaðu upp í þig hóran þín
     }
 }

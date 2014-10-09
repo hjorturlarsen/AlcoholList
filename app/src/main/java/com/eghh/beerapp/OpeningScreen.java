@@ -33,10 +33,7 @@ public class OpeningScreen extends Activity {
         }
         return super.onOptionsItemSelected(item);
 
-        //How do you like them apples you gigantic phaggott
-        //Drullaðu upp í þig hóran þín
-        //Larsen reporting in
-        //second check
-        //Hrólfur er betri en þið allir faggarnir ykkar!
+        //How do you like them apples you gigantic phaggot
+        //Ásta is riddled with aids
     }
 }

@@ -37,5 +37,6 @@ public class OpeningScreen extends Activity {
         //Drullaðu upp í þig hóran þín
         //Larsen reporting in
         //second check
+        //Hrólfur er betri en þið allir faggarnir ykkar
     }
 }

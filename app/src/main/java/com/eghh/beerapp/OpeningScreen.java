@@ -35,5 +35,6 @@ public class OpeningScreen extends Activity {
 
         //How do you like them apples you gigantic phaggott
         //Drullaðu upp í þig hóran þín
+        //Larsen reporting in
     }
 }

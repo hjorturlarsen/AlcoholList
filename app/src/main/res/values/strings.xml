@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">BeerApp</string>
-    <string name="hello_world">Hello world!!!</string>
-    <string name="action_settings">Settings</string>
-
+    <string name="sample_show_log">Show Log</string>
+    <string name="sample_hide_log">Hide Log</string>
+    <string name="title_avtivity_main">ACTIVITY MAIN</string>
 </resources>

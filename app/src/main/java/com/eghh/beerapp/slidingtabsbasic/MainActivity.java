@@ -4,13 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ViewAnimator;
-
 import com.eghh.beerapp.common.activities.SampleActivityBase;
-import com.eghh.beerapp.common.logger.Log;
-import com.eghh.beerapp.common.logger.LogFragment;
-import com.eghh.beerapp.common.logger.LogWrapper;
-import com.eghh.beerapp.common.logger.MessageOnlyLogFilter;
 
 /**
  * A simple launcher activity containing a summary sample description, sample log and a custom
@@ -20,12 +14,6 @@ import com.eghh.beerapp.common.logger.MessageOnlyLogFilter;
  * on other devices it's visibility is controlled by an item on the Action Bar.
  */
 public class MainActivity extends SampleActivityBase {
-
-    public static final String TAG = "MainActivity";
-
-    // Whether the Log Fragment is currently shown
-    private boolean mLogShown;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +25,6 @@ public class MainActivity extends SampleActivityBase {
         transaction.commit();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -71,27 +54,5 @@ public class MainActivity extends SampleActivityBase {
         }
         */
         return super.onOptionsItemSelected(item);
-    }
-
-    /** Create a chain of targets that will receive log data */
-    @Override
-    public void initializeLogging() {
-        // Wraps Android's native log framework.
-        LogWrapper logWrapper = new LogWrapper();
-        // Using Log, front-end to the logging chain, emulates android.util.log method signatures.
-        Log.setLogNode(logWrapper);
-
-        // Filter strips out everything except the message text.
-        MessageOnlyLogFilter msgFilter = new MessageOnlyLogFilter();
-        logWrapper.setNext(msgFilter);
-
-        /*
-        // On screen logging via a fragment with a TextView.
-        LogFragment logFragment = (LogFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.log_fragment);
-        msgFilter.setNext(logFragment.getLogView());
-
-        Log.i(TAG, "Ready");
-        */
     }
 }

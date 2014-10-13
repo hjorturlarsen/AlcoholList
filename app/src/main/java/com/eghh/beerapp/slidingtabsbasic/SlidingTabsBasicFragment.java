@@ -4,9 +4,7 @@ package com.eghh.beerapp.slidingtabsbasic;
  * Created by Hjortur on 10.10.2014.
  */
 
-import com.eghh.beerapp.common.logger.Log;
 import com.eghh.beerapp.common.view.SlidingTabLayout;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -14,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 /*
  * A basic sample which shows how to use {@link com.example.android.common.view.SlidingTabLayout}
@@ -26,9 +23,6 @@ public class SlidingTabsBasicFragment extends Fragment
 {
 
     String [] ITEMS = {"Achievements", "Favorites", "Search", "To drink", "Explore"};
-
-    static final String LOG_TAG = "SlidingTabsBasicFragment";
-
     /**
      * A custom {@link ViewPager} title strip which looks much like Tabs present in Android v4.0 and
      * above, but is designed to give continuous feedback to the user when scrolling.
@@ -159,12 +153,6 @@ public class SlidingTabsBasicFragment extends Fragment
                 // Add the newly created View to the ViewPager
                 container.addView(view);
 
-                // Retrieve a TextView from the inflated View, and update it's text
-                TextView title = (TextView) view.findViewById(R.id.item_title);
-                title.setText(String.valueOf(position + 1));
-
-                Log.i(LOG_TAG, "instantiateItem() [position: " + position + "]");
-
                 // Return the View
                 return view;
             }
@@ -178,7 +166,6 @@ public class SlidingTabsBasicFragment extends Fragment
         public void destroyItem(ViewGroup container, int position, Object object)
         {
             container.removeView((View) object);
-            Log.i(LOG_TAG, "destroyItem() [position: " + position + "]");
         }
 
     }

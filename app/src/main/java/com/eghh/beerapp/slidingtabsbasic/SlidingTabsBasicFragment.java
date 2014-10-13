@@ -127,27 +127,27 @@ public class SlidingTabsBasicFragment extends Fragment
         @Override
         public Object instantiateItem(ViewGroup container, int position)
         {
-            if(ITEMS[position] == "Achievements"){
+            if(ITEMS[position].equals("Achievements")){
                 View view = getActivity().getLayoutInflater().inflate(R.layout.achievements, container, false);
                 container.addView(view);
                 return view;
             }
-            if(ITEMS[position] == "Favorites"){
+            if(ITEMS[position].equals("Favorites")){
                 View view = getActivity().getLayoutInflater().inflate(R.layout.favorites, container, false);
                 container.addView(view);
                 return view;
             }
-            if(ITEMS[position] == "Search"){
+            if(ITEMS[position].equals("Search")){
                 View view = getActivity().getLayoutInflater().inflate(R.layout.search, container, false);
                 container.addView(view);
                 return view;
             }
-            if(ITEMS[position] == "To drink"){
+            if(ITEMS[position].equals("To drink")){
                 View view = getActivity().getLayoutInflater().inflate(R.layout.to_drink, container, false);
                 container.addView(view);
                 return view;
             }
-            if(ITEMS[position] == "Explore"){
+            if(ITEMS[position].equals("Explore")){
                 View view = getActivity().getLayoutInflater().inflate(R.layout.explore, container, false);
                 container.addView(view);
                 return view;

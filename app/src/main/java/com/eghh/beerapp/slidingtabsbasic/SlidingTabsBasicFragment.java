@@ -75,7 +75,7 @@ public class SlidingTabsBasicFragment extends Fragment
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
         // END_INCLUDE (setup_slidingtablayout)
-    }/home/gudni
+    }
     // END_INCLUDE (fragment_onviewcreated)
 
     /**

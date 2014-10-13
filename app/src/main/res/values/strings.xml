@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sample_show_log">Show Log</string>
+    <string name="sample_hide_log">Hide Log</string>
+    <string name="achievements_text">Achievements Achievements Achievements</string>
+    <string name="explore_text">Explore Explore Explore Explore</string>
+    <string name="favorites_text">Favorites Favorites Favorites Favorites</string>
+    <string name="search_text">Search Search Search Search</string>
+    <string name="to_drink_text">To drink To drink To drink To drink</string>
+    <string name="search_hint">Tasty beer...</string>
+</resources>

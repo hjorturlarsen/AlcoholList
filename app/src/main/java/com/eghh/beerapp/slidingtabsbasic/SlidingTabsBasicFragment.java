@@ -19,7 +19,7 @@ import android.widget.TextView;
 /*
  * A basic sample which shows how to use {@link com.example.android.common.view.SlidingTabLayout}
  * to display a custom {@link ViewPager} title strip which gives continuous feedback to the user
- * when scrolling.
+ * when scrollings.
  */
 
 public class SlidingTabsBasicFragment extends Fragment
@@ -75,7 +75,7 @@ public class SlidingTabsBasicFragment extends Fragment
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
         // END_INCLUDE (setup_slidingtablayout)
-    }
+    }/home/gudni
     // END_INCLUDE (fragment_onviewcreated)
 
     /**

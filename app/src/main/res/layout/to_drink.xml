@@ -11,4 +11,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/to_drink_text"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView3" />
+
+
 </LinearLayout>

@@ -68,7 +68,9 @@ public class SlidingTabsBasicFragment extends Fragment
         // it's PagerAdapter set.
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
-        // END_INCLUDE (setup_slidingtablayout)
+        //END_INCLUDE (setup_slidingtablayout)
+
+        mViewPager.setCurrentItem(2);
     }
     // END_INCLUDE (fragment_onviewcreated)
 
@@ -148,7 +150,7 @@ public class SlidingTabsBasicFragment extends Fragment
             }
             else{
                 // Inflate a new layout from our resources
-                View view = getActivity().getLayoutInflater().inflate(R.layout.pager_item,
+                View view = getActivity().getLayoutInflater().inflate(R.layout.xml_not_found,
                         container, false);
                 // Add the newly created View to the ViewPager
                 container.addView(view);

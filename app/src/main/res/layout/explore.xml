@@ -46,5 +46,4 @@
         android:text="Location..."
         android:id="@+id/button5"
         android:layout_gravity="center_horizontal" />
-
 </LinearLayout>

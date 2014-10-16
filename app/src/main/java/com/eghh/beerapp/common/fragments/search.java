@@ -1,5 +1,6 @@
 package com.eghh.beerapp.common.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,7 +20,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class search extends Fragment{
-
 
     public static search newInstance()
     {
@@ -43,7 +43,8 @@ public class search extends Fragment{
             public boolean onQueryTextSubmit(String s){
                 //((TextView)view.findViewById(R.id.search_textView)).setText(s);
                 SearchActivity sa = new SearchActivity();
-                sa.setSearchQuery(s);
+                ProgressDialog pd = new ProgressDialog(getActivity());
+                sa.setSearchQuery(s, pd);
                 return false;
             }
 

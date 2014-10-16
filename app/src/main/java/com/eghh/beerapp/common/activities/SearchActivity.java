@@ -19,11 +19,13 @@ public class SearchActivity extends SampleActivityBase {
     ArrayList<HashMap<String, String>> jsonlist = new ArrayList<HashMap<String, String>>();
     //ArrayList<JSONObject> breweryList = new ArrayList<JSONObject>();
     ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
+    ProgressDialog pdi;
     private static final String type = "type";
 
     //----Search----
-    public void setSearchQuery(String s){
+    public void setSearchQuery(String s, ProgressDialog pd){
         url = url + s;
+        pdi = pd;
         parseJson();
     }
     public void parseJson(){
@@ -37,21 +39,21 @@ public class SearchActivity extends SampleActivityBase {
 
             Log.i("1", "Called");
             context = activity;
-            //dialog = new ProgressDialog(context);
+            dialog = pdi;
         }
 
         private Context context;
 
         protected void onPreExecute() {
-//            this.dialog.setMessage("Progress start");
-//            this.dialog.show();
+            this.dialog.setMessage("Finding delicious beers...");
+            this.dialog.show();
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
-//            if (dialog.isShowing()) {
-//                dialog.dismiss();
-//            }
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
             ArrayList<BeerModel> asd = beerList;
         }
 

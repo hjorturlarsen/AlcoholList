@@ -18,5 +18,5 @@
         android:layout_height="wrap_content"
         android:text="@string/search_text"
         android:id="@+id/search_textView"
-        />
+    />
 </LinearLayout>

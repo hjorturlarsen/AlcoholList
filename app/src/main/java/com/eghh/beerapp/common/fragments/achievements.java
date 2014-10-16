@@ -3,12 +3,15 @@ package com.eghh.beerapp.common.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TabHost;
 
 public class achievements extends Fragment
 {
+    private FragmentTabHost mTabHost;
     public static achievements newInstance()
     {
         return new achievements();
@@ -23,7 +26,7 @@ public class achievements extends Fragment
     {
         super.onActivityCreated(savedInstanceState);
 
-        //getView().findViewById(R.id.fragment_achievements);
+        View view = getView().findViewById(R.id.fragment_achievements);
     }
 
     @Override

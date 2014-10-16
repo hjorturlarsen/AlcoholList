@@ -29,6 +29,7 @@ public class SearchActivity extends SampleActivityBase {
     public void parseJson(){
         new ProgressTask(SearchActivity.this).execute();
     }
+
     private class ProgressTask extends AsyncTask<String, Void, Boolean> {
         private ProgressDialog dialog;
 
@@ -36,8 +37,7 @@ public class SearchActivity extends SampleActivityBase {
 
             Log.i("1", "Called");
             context = activity;
-
-//            dialog = new ProgressDialog(context);
+            //dialog = new ProgressDialog(context);
         }
 
         private Context context;

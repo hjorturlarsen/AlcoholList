@@ -58,7 +58,8 @@ public class JSONParser {
 
         try {
             jobj = new JSONObject(builder.toString());
-            jarray = jobj.getJSONArray("data");
+            JSONArray jarrayNoData = new JSONArray("[{'noData': 'No beers found'}]");
+            jarray = jobj.has("data") ? jobj.getJSONArray("data") : jarrayNoData;
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
         }

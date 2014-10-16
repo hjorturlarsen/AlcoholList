@@ -42,8 +42,8 @@ public class search extends Fragment{
             @Override
             public boolean onQueryTextSubmit(String s){
                 //((TextView)view.findViewById(R.id.search_textView)).setText(s);
-                SearchActivity ma = new SearchActivity();
-                ma.setSearchQuery(s);
+                SearchActivity sa = new SearchActivity();
+                sa.setSearchQuery(s);
                 return false;
             }
 

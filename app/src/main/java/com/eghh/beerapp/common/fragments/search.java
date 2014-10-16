@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.eghh.beerapp.common.activities.MainActivity;
+
+import java.io.IOException;
+
 public class search extends Fragment{
 
 
@@ -31,8 +35,10 @@ public class search extends Fragment{
         //listener
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
+            public boolean onQueryTextSubmit(String s){
                 ((TextView)view.findViewById(R.id.search_textView)).setText(s);
+                MainActivity ma = new MainActivity();
+                ma.setSearchQuery(s);
                 return false;
             }
 

@@ -1,4 +1,4 @@
-package com.eghh.beerapp.slidingtabsbasic;
+package com.eghh.beerapp.common.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,14 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by 91hjo_000 on 15.10.2014.
- */
-public class BeerFuu extends Fragment
+public class achievements extends Fragment
 {
-    public static BeerFuu newInstance()
+    public static achievements newInstance()
     {
-        return new BeerFuu();
+        return new achievements();
     }
 
 
@@ -26,12 +23,12 @@ public class BeerFuu extends Fragment
     {
         super.onActivityCreated(savedInstanceState);
 
-        //getView().find
+        //getView().findViewById(R.id.fragment_achievements);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.achievements, container, false);
+        return inflater.inflate(R.layout.fragment_achievements, container, false);
     }
 }

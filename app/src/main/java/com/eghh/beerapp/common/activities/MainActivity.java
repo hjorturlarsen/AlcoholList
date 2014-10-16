@@ -9,12 +9,12 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.eghh.beerapp.common.view.SlidingTabLayout;
-import com.eghh.beerapp.fragments.R;
-import com.eghh.beerapp.fragments.achievements;
-import com.eghh.beerapp.fragments.explore;
-import com.eghh.beerapp.fragments.favorites;
-import com.eghh.beerapp.fragments.search;
-import com.eghh.beerapp.fragments.to_drink;
+import com.eghh.beerapp.common.fragments.R;
+import com.eghh.beerapp.common.fragments.achievements;
+import com.eghh.beerapp.common.fragments.explore;
+import com.eghh.beerapp.common.fragments.favorites;
+import com.eghh.beerapp.common.fragments.search;
+import com.eghh.beerapp.common.fragments.to_drink;
 
 /**
  * A simple launcher activity containing a summary sample description, sample log and a custom

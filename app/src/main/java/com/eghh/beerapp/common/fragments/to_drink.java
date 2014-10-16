@@ -1,4 +1,4 @@
-package com.eghh.beerapp.fragments;
+package com.eghh.beerapp.common.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class search extends Fragment{
-    public static search newInstance()
+public class to_drink extends Fragment{
+    public static to_drink newInstance()
     {
-        return new search();
+        return new to_drink();
     }
 
     @Override
@@ -18,12 +18,12 @@ public class search extends Fragment{
     {
         super.onActivityCreated(savedInstanceState);
 
-        //getView().findViewById(R.id.fragment_search);
+        //getView().findViewById(R.id.fragment_to_drink);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        return inflater.inflate(R.layout.fragment_to_drink, container, false);
     }
 }

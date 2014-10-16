@@ -1,4 +1,4 @@
-package com.eghh.beerapp.fragments;
+package com.eghh.beerapp.common.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

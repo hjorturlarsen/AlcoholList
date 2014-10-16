@@ -9,9 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.activities.MainActivity;
+import com.eghh.beerapp.common.activities.SearchActivity;
+
+import org.json.JSONArray;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class search extends Fragment{
 
@@ -36,8 +41,8 @@ public class search extends Fragment{
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s){
-                ((TextView)view.findViewById(R.id.search_textView)).setText(s);
-                MainActivity ma = new MainActivity();
+                //((TextView)view.findViewById(R.id.search_textView)).setText(s);
+                SearchActivity ma = new SearchActivity();
                 ma.setSearchQuery(s);
                 return false;
             }
@@ -48,10 +53,6 @@ public class search extends Fragment{
             }
         });
     }
-
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)

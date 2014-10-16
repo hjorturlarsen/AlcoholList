@@ -8,6 +8,6 @@
         <item>Explore</item>
     </string-array>
 
-    <string name="search_hint">Tasty beer...</string>
-    <string name="search_text">asdfasdfasdsdfsdfsfsfsdfsfsdff</string>
+    <string name="search_hint">Some tasty beer...</string>
+    <string name="search_text">...</string>
 </resources>

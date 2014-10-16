@@ -7,5 +7,7 @@
         <item>To drink</item>
         <item>Explore</item>
     </string-array>
+
     <string name="search_hint">Tasty beer...</string>
+    <string name="search_text">asdfasdfasdsdfsdfsfsfsdfsfsdff</string>
 </resources>

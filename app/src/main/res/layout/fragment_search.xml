@@ -6,14 +6,17 @@
     android:padding="10dp"
     android:id="@+id/fragment_search">
 
-    <EditText
+    <SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Some tasty beer..."/>
+        android:id="@+id/search_search"
+        android:queryHint="@string/search_hint"
+    />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView"
-        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_text"
+        android:id="@+id/search_textView"
+        />
 </LinearLayout>

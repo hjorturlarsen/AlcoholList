@@ -4,7 +4,7 @@ package com.eghh.beerapp.common;
  * Created by gudni on 16.10.2014.
  */
 public class BeerModel {
-    private String beerId, beerName, beerDesc, beerPercentage;
+    public String beerId, beerName, beerDesc, beerPercentage;
 
     public BeerModel(String beerId, String beerName, String beerDesc, String beerPercentage){
         this.beerId = beerId;

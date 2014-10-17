@@ -8,19 +8,12 @@ import android.view.LayoutInflater;
 import android.widget.SearchView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.eghh.beerapp.common.BeerModel;
-import com.eghh.beerapp.common.activities.MainActivity;
 import com.eghh.beerapp.common.activities.SearchActivity;
+import com.eghh.beerapp.common.activities.SearchActivity.ProgressTask;
 
-import org.json.JSONArray;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-public class search extends Fragment{
-
+public class search extends Fragment
+{
     public static search newInstance()
     {
         return new search();
@@ -30,21 +23,17 @@ public class search extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
+        View view = getView().findViewById(R.id.fragment_search);
+        SearchView searchView = (SearchView) view.findViewById(R.id.search_searchView);
 
-        final View view = getView().findViewById(R.id.fragment_search);
-
-        //search window
-        final SearchView searchView = (SearchView) view.findViewById(R.id.search_search);
-        //expand by default
         searchView.setIconifiedByDefault(false);
-        //listener
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s){
                 //((TextView)view.findViewById(R.id.search_textView)).setText(s);
                 SearchActivity sa = new SearchActivity();
                 ProgressDialog pd = new ProgressDialog(getActivity());
-                sa.setSearchQuery(s, pd);
+                sa.parseJson(s, pd);
                 return false;
             }
 

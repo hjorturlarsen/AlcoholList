@@ -7,33 +7,34 @@ import com.eghh.beerapp.common.JSONParser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class SearchActivity extends SampleActivityBase {
     private static String key = "0bb957499c324525521a89186b87e785";
     //ArrayList<HashMap<String, String>> jsonlist = new ArrayList<HashMap<String, String>>();
     //ArrayList<JSONObject> breweryList = new ArrayList<JSONObject>();
-    private static ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
-    public static boolean isBackgroundWorkDone = false;
+    public static ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
     private static final String type = "type";
 
 
     public void parseJson(String s, ProgressDialog pd){
         String url = "http://api.brewerydb.com/v2/search?key=" + key + "&q=" + s;
-        isBackgroundWorkDone = false;
-        //Need to reset the beerlist, otherwise it just keeps on adding after each query
-        beerList = new ArrayList<BeerModel>();
-        new ProgressTask(pd).execute(url);
+        new ProgressTask(context, pd, view).execute(url);
     }
 
-    public ArrayList<BeerModel> fetchBeerList(){
-        return beerList;
-    }
+    public class ProgressTask extends AsyncTask<String, Void, ArrayList<BeerModel>> {
+        public ProgressDialog mDialog;
+        public Context mContext;
+        public View mView;
 
-    private static class ProgressTask extends AsyncTask<String, Void, ArrayList<BeerModel>> {
-        private ProgressDialog dialog;
-        public ProgressTask(ProgressDialog pd){
-            dialog = pd;
+        public ProgressTask(Context context, ProgressDialog pd, View view){
+            this.mDialog = pd;
+            this.mContext = context;
+            this.mView = view;
         }
 
 
@@ -47,8 +48,13 @@ public class SearchActivity extends SampleActivityBase {
             if (dialog.isShowing()) {
                 dialog.dismiss();
             }
-            ArrayList<BeerModel> sdds = beerList;
             //Display outcome output_list
+            TextView textView = (TextView) mView.findViewById(R.id.search_textView);
+            for (int i = 0; i < beerList.size(); i++){
+                textView.append(beerList.get(i).beerName + "\n");
+                textView.append(beerList.get(i).beerDesc + "\n");
+                textView.append("\n");
+            }
         }
 
         protected  ArrayList<BeerModel> doInBackground(String... args) {
@@ -82,7 +88,6 @@ public class SearchActivity extends SampleActivityBase {
                     e.printStackTrace();
                 }
             }
-            isBackgroundWorkDone = true;
             return beerList;
         }
     }

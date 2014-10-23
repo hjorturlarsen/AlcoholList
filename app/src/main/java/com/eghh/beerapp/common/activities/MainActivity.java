@@ -1,9 +1,6 @@
 package com.eghh.beerapp.common.activities;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +8,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.util.Log;
-
 import com.eghh.beerapp.common.view.SlidingTabLayout;
 import com.eghh.beerapp.common.fragments.R;
 import com.eghh.beerapp.common.fragments.achievements;
@@ -20,16 +15,7 @@ import com.eghh.beerapp.common.fragments.explore;
 import com.eghh.beerapp.common.fragments.favorites;
 import com.eghh.beerapp.common.fragments.search;
 import com.eghh.beerapp.common.fragments.to_drink;
-import com.eghh.beerapp.common.BeerModel;
-import com.eghh.beerapp.common.JSONParser;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A simple launcher activity containing a summary sample description, sample log and a custom
@@ -43,6 +29,7 @@ public class MainActivity extends SampleActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.out.println("kúkur");
 
         ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
         SlidingTabLayout tab = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
@@ -62,7 +49,7 @@ public class MainActivity extends SampleActivityBase {
         return super.onOptionsItemSelected(item);
     }
 
-    private class CustomPagerAdapter extends FragmentPagerAdapter
+    public class CustomPagerAdapter extends FragmentPagerAdapter
     {
         public CustomPagerAdapter(FragmentManager fm) {
             super(fm);

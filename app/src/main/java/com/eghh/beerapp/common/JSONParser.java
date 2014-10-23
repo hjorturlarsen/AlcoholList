@@ -15,7 +15,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,7 +57,8 @@ public class JSONParser {
 
         try {
             jobj = new JSONObject(builder.toString());
-            jarray = jobj.getJSONArray("data");
+            JSONArray jarrayNoData = new JSONArray("[{'noData': 'No beers found'}]");
+            jarray = jobj.has("data") ? jobj.getJSONArray("data") : jarrayNoData;
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
         }

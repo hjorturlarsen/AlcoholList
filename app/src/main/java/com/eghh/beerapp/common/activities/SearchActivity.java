@@ -1,74 +1,72 @@
 package com.eghh.beerapp.common.activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.JSONParser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SearchActivity extends SampleActivityBase {
-
     private static String key = "0bb957499c324525521a89186b87e785";
-    private static String url = "http://api.brewerydb.com/v2/search?key=" + key + "&q=";
-    ArrayList<HashMap<String, String>> jsonlist = new ArrayList<HashMap<String, String>>();
+    //ArrayList<HashMap<String, String>> jsonlist = new ArrayList<HashMap<String, String>>();
     //ArrayList<JSONObject> breweryList = new ArrayList<JSONObject>();
-    ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
+    private static ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
+    public static boolean isBackgroundWorkDone = false;
     private static final String type = "type";
 
-    //----Search----
-    public void setSearchQuery(String s){
-        url = url + s;
-        parseJson();
+
+    public void parseJson(String s, ProgressDialog pd){
+        String url = "http://api.brewerydb.com/v2/search?key=" + key + "&q=" + s;
+        isBackgroundWorkDone = false;
+        //Need to reset the beerlist, otherwise it just keeps on adding after each query
+        beerList = new ArrayList<BeerModel>();
+        new ProgressTask(pd).execute(url);
     }
-    public void parseJson(){
-        new ProgressTask(SearchActivity.this).execute();
+
+    public ArrayList<BeerModel> fetchBeerList(){
+        return beerList;
     }
-    private class ProgressTask extends AsyncTask<String, Void, Boolean> {
+
+    private static class ProgressTask extends AsyncTask<String, Void, ArrayList<BeerModel>> {
         private ProgressDialog dialog;
-
-        public ProgressTask(SampleActivityBase activity){
-
-            Log.i("1", "Called");
-            context = activity;
-
-//            dialog = new ProgressDialog(context);
+        public ProgressTask(ProgressDialog pd){
+            dialog = pd;
         }
 
-        private Context context;
 
         protected void onPreExecute() {
-//            this.dialog.setMessage("Progress start");
-//            this.dialog.show();
+            this.dialog.setMessage("Finding delicious beers...");
+            this.dialog.show();
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
-//            if (dialog.isShowing()) {
-//                dialog.dismiss();
-//            }
-            ArrayList<BeerModel> asd = beerList;
+        protected void onPostExecute(ArrayList<BeerModel> output_list) {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+            ArrayList<BeerModel> sdds = beerList;
+            //Display outcome output_list
         }
 
-        protected Boolean doInBackground(final String... args) {
+        protected  ArrayList<BeerModel> doInBackground(String... args) {
 
             JSONParser jParser = new JSONParser();
-            JSONArray json = jParser.getJSONFromUrl(url);
+            JSONArray json = jParser.getJSONFromUrl(args[0]);
 
             for (int i = 0; i < json.length(); i++) {
 
                 try {
                     JSONObject beer = json.getJSONObject(i);
                     String vtype = beer.getString(type);
+                    /*
                     HashMap<String, String> map = new HashMap<String, String>();
-//                    if (vtype.equals("brewery")){
-//                        breweryList.add(c);
-//                    }
+                    if (vtype.equals("brewery")){
+                        breweryList.add(c);
+                    }
+                    */
                     if(vtype.equals("beer")){
 
                         String beerId = beer.getString("id");
@@ -84,7 +82,8 @@ public class SearchActivity extends SampleActivityBase {
                     e.printStackTrace();
                 }
             }
-            return null;
+            isBackgroundWorkDone = true;
+            return beerList;
         }
     }
 }

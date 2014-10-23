@@ -9,5 +9,5 @@
     </string-array>
 
     <string name="search_hint">Some tasty beer...</string>
-    <string name="search_text">...</string>
+    <string name="search_result"> </string>
 </resources>

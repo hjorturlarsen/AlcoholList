@@ -100,7 +100,6 @@ public class MainActivity extends SampleActivityBase {
             return 5;
         }
 
-
         Resources res = getResources();
         String[] titles = res.getStringArray(R.array.titles);
         @Override

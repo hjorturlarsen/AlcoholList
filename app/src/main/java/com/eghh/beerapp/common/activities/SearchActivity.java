@@ -1,16 +1,16 @@
 package com.eghh.beerapp.common.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.TextView;
 import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.JSONParser;
+import com.eghh.beerapp.common.fragments.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class SearchActivity extends SampleActivityBase {
@@ -21,7 +21,7 @@ public class SearchActivity extends SampleActivityBase {
     private static final String type = "type";
 
 
-    public void parseJson(String s, ProgressDialog pd){
+    public void parseJson(Context context, String s, ProgressDialog pd, View view){
         String url = "http://api.brewerydb.com/v2/search?key=" + key + "&q=" + s;
         new ProgressTask(context, pd, view).execute(url);
     }
@@ -39,14 +39,14 @@ public class SearchActivity extends SampleActivityBase {
 
 
         protected void onPreExecute() {
-            this.dialog.setMessage("Finding delicious beers...");
-            this.dialog.show();
+            this.mDialog.setMessage("Finding delicious beers...");
+            this.mDialog.show();
         }
 
         @Override
         protected void onPostExecute(ArrayList<BeerModel> output_list) {
-            if (dialog.isShowing()) {
-                dialog.dismiss();
+            if (mDialog.isShowing()) {
+                mDialog.dismiss();
             }
             //Display outcome output_list
             TextView textView = (TextView) mView.findViewById(R.id.search_textView);
@@ -79,7 +79,8 @@ public class SearchActivity extends SampleActivityBase {
                         String beerName = beer.getString("name");
                         String percentage = beer.getString("abv");
                         String description = beer.has("style") ? beer.getJSONObject("style").getString("description") : beer.getString("description");
-                        BeerModel bm = new BeerModel(beerId, beerName, description, percentage);
+                        String image = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://zenit.senecac.on.ca/wiki/imgs/404-not-found.gif";
+                        BeerModel bm = new BeerModel(beerId, beerName, description, percentage, image);
                         beerList.add(bm);
                     }
 

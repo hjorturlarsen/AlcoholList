@@ -2,23 +2,17 @@ package com.eghh.beerapp.common.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.eghh.beerapp.common.fragments.R;
 
 public class SplashActivity extends Activity {
-    private static String TAG = SplashActivity.class.getName();
-    private static long SLEEP_TIME = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_splash_screen);
         super.onCreate(savedInstanceState);
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);    // Removes title bar
@@ -26,48 +20,37 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.activity_splash);
 
-        // Start timer and launch main activity
-        IntentLauncher launcher = new IntentLauncher();
-        launcher.start();
+        // Start background work
+        new DataBaseWorkWhileSplash().execute();
     }
 
+    private class DataBaseWorkWhileSplash extends AsyncTask<String, Void, Boolean> {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.splash, menu);
-        return true;
-    }
+        public DataBaseWorkWhileSplash(){
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
 
-    private class IntentLauncher extends Thread {
+        protected void onPreExecute() {
+            //Maybe nothing
+
+        }
+
         @Override
-        /**
-         * Sleep for some time and than start new activity.
-         */
-        public void run() {
-            try {
-                // Sleeping
-                Thread.sleep(SLEEP_TIME*1000);
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage());
-            }
-
+        protected void onPostExecute(final Boolean success) {
             // Start main activity
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             SplashActivity.this.startActivity(intent);
             SplashActivity.this.finish();
+        }
+
+        protected Boolean doInBackground(String... args) {
+            int x = 0;
+            while (x < 4000000){
+                x++;
+            }
+            //DataBase work will be done here
+
+            return null;
         }
     }
 }

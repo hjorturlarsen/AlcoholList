@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="titles">
         <item>Achievements</item>
         <item>Favorites</item>
@@ -9,5 +10,9 @@
     </string-array>
 
     <string name="search_hint">Some tasty beer...</string>
-    <string name="search_result"> </string>
+    <string name="search_result"></string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

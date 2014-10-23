@@ -1,12 +1,15 @@
 package com.eghh.beerapp.common.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.eghh.beerapp.common.DataBaseHelper;
 import com.eghh.beerapp.common.fragments.R;
 
 public class SplashActivity extends Activity {
@@ -21,15 +24,15 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
 
         // Start background work
-        new DataBaseWorkWhileSplash().execute();
+        new DataBaseWorkWhileSplash(SplashActivity.this).execute();
     }
 
     private class DataBaseWorkWhileSplash extends AsyncTask<String, Void, Boolean> {
+        private Context context;
 
-        public DataBaseWorkWhileSplash(){
-
+        public DataBaseWorkWhileSplash(Activity act){
+            context = act;
         }
-
         protected void onPreExecute() {
             //Maybe nothing
 
@@ -48,6 +51,10 @@ public class SplashActivity extends Activity {
             while (x < 4000000){
                 x++;
             }
+//            SQLiteDatabase sqldb = openOrCreateDatabase("TestDb",MODE_PRIVATE,null);
+            DataBaseHelper dbh = new DataBaseHelper(context);
+//            dbh.onCreate(sqldb);
+
             //DataBase work will be done here
 
             return null;

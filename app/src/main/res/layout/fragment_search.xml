@@ -14,13 +14,10 @@
     />
 
     <ListView
-        android:layout_width="match_parent"
+        android:id="@+id/search_listView"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/search_listView">
-
-        </ListView>
-
-
+        android:divider="@color/list_divider"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_row_selector" />
 </LinearLayout>

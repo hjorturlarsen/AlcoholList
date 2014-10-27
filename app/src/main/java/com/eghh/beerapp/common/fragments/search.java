@@ -26,19 +26,19 @@ public class search extends Fragment
     {
         super.onActivityCreated(savedInstanceState);
         final View mView = getView().findViewById(R.id.fragment_search);
-        SearchView searchView = (SearchView) mView.findViewById(R.id.search_searchView);
+        final SearchView searchView = (SearchView) mView.findViewById(R.id.search_searchView);
 
         searchView.setIconifiedByDefault(false);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s){
-                //((TextView)view.findViewById(R.id.search_textView)).setText(s);
                 SearchActivity sa = new SearchActivity();
                 ProgressDialog pd = new ProgressDialog(getActivity());
                 mContext = getActivity();
                 sa.parseJson(mContext, s, pd, mView);
-                return false;
+                searchView.clearFocus();
+                return true;
             }
 
             @Override

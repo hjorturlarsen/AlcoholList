@@ -10,8 +10,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.JSONParser;
+import com.eghh.beerapp.common.app.AppController;
 import com.eghh.beerapp.common.fragments.R;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,8 +30,8 @@ public class SearchActivity extends SampleActivityBase {
     private static final String type = "type";
     private ListView lv;
 
-
     public void parseJson(Context context, String s, ProgressDialog pd, View view){
+        s = s.replace(" ", "+");
         String url = "http://api.brewerydb.com/v2/search?key=" + key + "&q=" + s;
         new ProgressTask(context, pd, view).execute(url);
     }
@@ -59,6 +63,7 @@ public class SearchActivity extends SampleActivityBase {
             class dataListAdapter extends BaseAdapter {
                 ArrayList<BeerModel> beerList;
                 Context ctx;
+                ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
                 public dataListAdapter(Context context, ArrayList<BeerModel> output_list){
                     this.beerList = output_list;
@@ -83,15 +88,22 @@ public class SearchActivity extends SampleActivityBase {
                     if(convertView == null){
                         LayoutInflater mInflater = (LayoutInflater) ctx
                                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-                        convertView = mInflater.inflate(R.layout.custom_list_view, null);
+                        convertView = mInflater.inflate(R.layout.list_row, null);
+                    }
+
+                    if(imageLoader == null)
+                    {
+                        imageLoader = AppController.getInstance().getImageLoader();
                     }
 
                     TextView name_text, description_text, percentage_text;
 
+                    NetworkImageView img = (NetworkImageView) convertView.findViewById(R.id.img);
                     name_text = (TextView) convertView.findViewById(R.id.name);
                     description_text = (TextView) convertView.findViewById(R.id.description);
                     percentage_text = (TextView) convertView.findViewById(R.id.percentage);
 
+                    img.setImageUrl(beerList.get(position).image, imageLoader);
                     name_text.setText(beerList.get(position).beerName);
                     description_text.setText(beerList.get(position).beerDesc);
                     percentage_text.setText(beerList.get(position).beerPercentage + "%");

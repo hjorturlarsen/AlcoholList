@@ -29,6 +29,7 @@ public class search extends Fragment
         SearchView searchView = (SearchView) mView.findViewById(R.id.search_searchView);
 
         searchView.setIconifiedByDefault(false);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s){

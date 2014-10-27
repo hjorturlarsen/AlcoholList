@@ -13,14 +13,14 @@
         android:queryHint="@string/search_hint"
     />
 
-    <ScrollView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/search_listView">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/search_textView"/>
+        </ListView>
 
-        </ScrollView>
+
 </LinearLayout>

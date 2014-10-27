@@ -106,7 +106,7 @@ public class SearchActivity extends SampleActivityBase {
                     img.setImageUrl(beerList.get(position).image, imageLoader);
                     name_text.setText(beerList.get(position).beerName);
                     description_text.setText(beerList.get(position).beerDesc);
-                    percentage_text.setText(beerList.get(position).beerPercentage + "%");
+                    percentage_text.setText("Alcohol percentage: " + beerList.get(position).beerPercentage + "%");
 
                     return convertView;
                 }
@@ -136,7 +136,7 @@ public class SearchActivity extends SampleActivityBase {
                         bmArray[4] = beer.has("style") ? beer.getJSONObject("style").getString("description") : beer.getString("description");
                         bmArray[5] = beer.has("glass") ? beer.getJSONObject("glass").getString("name") : "No specific glassware";
                         bmArray[6] = "null";
-                        bmArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://zenit.senecac.on.ca/wiki/imgs/404-not-found.gif";
+                        bmArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
                         BeerModel bm = new BeerModel(bmArray);
                         beerList.add(bm);
                     }

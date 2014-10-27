@@ -9,18 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 public class favorites extends Fragment {
     public static favorites newInstance()
     {
         return new favorites();
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
 
-        //getView().findViewById(R.id.fragment_favorites);
     }
 
     @Override

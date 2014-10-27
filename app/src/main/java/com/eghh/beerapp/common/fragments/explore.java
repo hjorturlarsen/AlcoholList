@@ -20,7 +20,6 @@ public class explore extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
         //getView().findViewById(R.id.fragment_explore);
     }
 

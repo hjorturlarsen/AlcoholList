@@ -47,9 +47,11 @@ public class SplashActivity extends Activity {
         }
 
         protected Boolean doInBackground(String... args) {
-            int x = 0;
-            while (x < 4000000){
-                x++;
+            try{
+                Thread.sleep(4000);
+            }
+            catch (InterruptedException ie){
+                ie.printStackTrace();
             }
             DataBaseHelper dbh = new DataBaseHelper(SplashActivity.this);
             dbh.getExistingData();

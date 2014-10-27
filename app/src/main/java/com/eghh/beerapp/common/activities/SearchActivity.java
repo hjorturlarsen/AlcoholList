@@ -1,9 +1,14 @@
 package com.eghh.beerapp.common.activities;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.JSONParser;
@@ -19,6 +24,7 @@ public class SearchActivity extends SampleActivityBase {
     //ArrayList<JSONObject> breweryList = new ArrayList<JSONObject>();
     public static ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
     private static final String type = "type";
+    private ListView lv;
 
 
     public void parseJson(Context context, String s, ProgressDialog pd, View view){
@@ -26,7 +32,7 @@ public class SearchActivity extends SampleActivityBase {
         new ProgressTask(context, pd, view).execute(url);
     }
 
-    public class ProgressTask extends AsyncTask<String, Void, ArrayList<BeerModel>> {
+    private class ProgressTask extends AsyncTask<String, Void, ArrayList<BeerModel>> {
         public ProgressDialog mDialog;
         public Context mContext;
         public View mView;
@@ -44,17 +50,57 @@ public class SearchActivity extends SampleActivityBase {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<BeerModel> output_list) {
+        protected void onPostExecute(final ArrayList<BeerModel> output_list) {
             if (mDialog.isShowing()) {
                 mDialog.dismiss();
             }
-            //Display outcome output_list
-            TextView textView = (TextView) mView.findViewById(R.id.search_textView);
-            for (int i = 0; i < beerList.size(); i++){
-                textView.append(beerList.get(i).beerName + "\n");
-                textView.append(beerList.get(i).beerDesc + "\n");
-                textView.append("\n");
+
+            class dataListAdapter extends BaseAdapter {
+                ArrayList<BeerModel> beerList;
+                Context ctx;
+
+                public dataListAdapter(Context context, ArrayList<BeerModel> output_list){
+                    this.beerList = output_list;
+                    this.ctx = context;
+                }
+
+                public int getCount(){
+                    return output_list.size();
+                }
+
+                public Object getItem(int arg0)
+                {
+                    return null;
+                }
+
+                public long getItemId(int position) {
+                    return position;
+                }
+
+                public View getView(int position, View convertView, ViewGroup parent)
+                {
+                    if(convertView == null){
+                        LayoutInflater mInflater = (LayoutInflater) ctx
+                                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+                        convertView = mInflater.inflate(R.layout.custom_list_view, null);
+                    }
+
+                    TextView name_text, description_text, percentage_text;
+
+                    name_text = (TextView) convertView.findViewById(R.id.name);
+                    description_text = (TextView) convertView.findViewById(R.id.description);
+                    percentage_text = (TextView) convertView.findViewById(R.id.percentage);
+
+                    name_text.setText(beerList.get(position).beerName);
+                    description_text.setText(beerList.get(position).beerDesc);
+                    percentage_text.setText(beerList.get(position).beerPercentage + "%");
+
+                    return convertView;
+                }
             }
+
+            lv = (ListView) mView.findViewById(R.id.search_listView);
+            lv.setAdapter(new dataListAdapter(mContext, output_list));
         }
 
         protected  ArrayList<BeerModel> doInBackground(String... args) {

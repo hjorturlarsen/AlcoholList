@@ -24,14 +24,14 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
 
         // Start background work
-        new DataBaseWorkWhileSplash(SplashActivity.this).execute();
+        new DataBaseWorkWhileSplash().execute();
     }
 
     private class DataBaseWorkWhileSplash extends AsyncTask<String, Void, Boolean> {
         private Context context;
 
-        public DataBaseWorkWhileSplash(Activity act){
-            context = act;
+        public DataBaseWorkWhileSplash(){
+            //context = act;
         }
         protected void onPreExecute() {
             //Maybe nothing
@@ -51,11 +51,10 @@ public class SplashActivity extends Activity {
             while (x < 4000000){
                 x++;
             }
-//            SQLiteDatabase sqldb = openOrCreateDatabase("TestDb",MODE_PRIVATE,null);
-            DataBaseHelper dbh = new DataBaseHelper(context);
-//            dbh.onCreate(sqldb);
+            DataBaseHelper dbh = new DataBaseHelper(SplashActivity.this);
+            dbh.getExistingData();
 
-            //DataBase work will be done here
+            // possibly more dataBase work to be done here
 
             return null;
         }

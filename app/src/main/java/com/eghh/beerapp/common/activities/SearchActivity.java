@@ -47,6 +47,7 @@ public class SearchActivity extends SampleActivityBase {
         protected void onPreExecute() {
             this.mDialog.setMessage("Finding delicious beers...");
             this.mDialog.show();
+            beerList.clear();
         }
 
         @Override
@@ -113,20 +114,18 @@ public class SearchActivity extends SampleActivityBase {
                 try {
                     JSONObject beer = json.getJSONObject(i);
                     String vtype = beer.getString(type);
-                    /*
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    if (vtype.equals("brewery")){
-                        breweryList.add(c);
-                    }
-                    */
+                    String[] bmArray = new String[8];
                     if(vtype.equals("beer")){
 
-                        String beerId = beer.getString("id");
-                        String beerName = beer.getString("name");
-                        String percentage = beer.getString("abv");
-                        String description = beer.has("style") ? beer.getJSONObject("style").getString("description") : beer.getString("description");
-                        String image = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://zenit.senecac.on.ca/wiki/imgs/404-not-found.gif";
-                        BeerModel bm = new BeerModel(beerId, beerName, description, percentage, image);
+                        bmArray[0] = beer.getString("id");
+                        bmArray[1] = beer.getString("name");
+                        bmArray[2] = beer.getString("abv");
+                        bmArray[3] = beer.has("isOrganic") ? beer.getString("isOrganic") : "N";
+                        bmArray[4] = beer.has("style") ? beer.getJSONObject("style").getString("description") : beer.getString("description");
+                        bmArray[5] = beer.has("glass") ? beer.getJSONObject("glass").getString("name") : "No specific glassware";
+                        bmArray[6] = "null";
+                        bmArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://zenit.senecac.on.ca/wiki/imgs/404-not-found.gif";
+                        BeerModel bm = new BeerModel(bmArray);
                         beerList.add(bm);
                     }
 

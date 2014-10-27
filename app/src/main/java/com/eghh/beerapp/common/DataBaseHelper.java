@@ -2,7 +2,9 @@ package com.eghh.beerapp.common;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.util.Pair;
@@ -17,6 +19,7 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
  */
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "TestDb";
+//    private static String DB_NAME = "RealDb"; Don forget to change before deploy
     private Context mContext;
 
     public DataBaseHelper(Context context){
@@ -41,34 +44,38 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         //sdb.execSQL("Delete from UserData");
 //        db.execSQL("Delete from UserPass2");
-        //insertToDb(sdb);
-        //getInfoFromDb(sdb);
 
     }
     public void getExistingData(){
         SQLiteDatabase sdb = this.getWritableDatabase();
         onCreate(sdb);
-//        String[] s = new String[] {"test1H", "BjorNafn", "4.55", "Y", "Descari", "Glass", "1", "null"};
-//        BeerModel bm1 = new BeerModel(s);
-//        insertToDb(bm1);
+        deleteFromDb("test2H");
         getInfoFromDb(sdb);
     }
-    public void insertToDb(BeerModel bm){
-        SQLiteDatabase db = this.getWritableDatabase();
-        double abv = Double.parseDouble(bm.beerPercentage);
-        int isOrganic = bm.organic.equals("N") || bm.organic.equals("null") ? 0 : 1;
-        int hasRated = bm.hasRated.equals("true") ? 1 : 0;
-        db.execSQL("INSERT INTO UserData VALUES(" +
-                " null," +
-                "'" + bm.beerId + "'," +
-                "'" + bm.beerName + "'," +
-                abv + " ," +
-                isOrganic + " ," +
-                "'" + bm.beerDesc + "'," +
-                "'" + bm.glassName + "'," +
-                hasRated + " ," +
-                " null);");
-        //Need to handle gracefully if there is an eecption
+    public void insertToDb(BeerModel bm) throws SQLiteException{
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            double abv = Double.parseDouble(bm.beerPercentage);
+            int isOrganic = bm.organic.equals("N") || bm.organic.equals("null") ? 0 : 1;
+            int hasRated = bm.hasRated.equals("true") ? 1 : 0;
+            //
+            //Some work to be done regarding saving pic to DB
+            //
+            db.execSQL("INSERT INTO UserData VALUES(" +
+                    " null," +
+                    "'" + bm.beerId + "'," +
+                    "'" + bm.beerName + "'," +
+                    abv + " ," +
+                    isOrganic + " ," +
+                    "'" + bm.beerDesc + "'," +
+                    "'" + bm.glassName + "'," +
+                    hasRated + " ," +
+                    " null);");
+        }
+        catch (SQLiteException ex){
+            Log.e("Error...", "Failed to insert");
+            //Possibly display some warning to user???
+        }
     }
     public void getInfoFromDb(SQLiteDatabase db){
         ArrayList<HashMap<String, String>> ratedList = new ArrayList<HashMap<String, String>>();
@@ -94,6 +101,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             }
             toDrinkList.add(map);
             unratedResultSet.moveToNext();
+        }
+    }
+    public void deleteFromDb(String beerId) throws SQLiteException{
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.execSQL("DELETE FROM UserData WHERE BeerId ='" + beerId + "'");
+        }
+        catch (SQLiteException ex){
+            Log.e("Error...", "Failed to insert");
+            //Possibly display some warning to user???
         }
     }
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {

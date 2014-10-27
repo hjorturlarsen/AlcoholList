@@ -109,7 +109,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             db.execSQL("DELETE FROM UserData WHERE BeerId ='" + beerId + "'");
         }
         catch (SQLiteException ex){
-            Log.e("Error...", "Failed to insert");
+            Log.e("Error...", "Failed to delete");
             //Possibly display some warning to user???
         }
     }

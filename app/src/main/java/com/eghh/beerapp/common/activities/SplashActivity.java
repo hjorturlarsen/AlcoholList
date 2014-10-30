@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.eghh.beerapp.common.DataBaseHelper;
 import com.eghh.beerapp.common.fragments.R;
+
+import java.io.IOException;
 
 public class SplashActivity extends Activity {
 
@@ -48,13 +51,18 @@ public class SplashActivity extends Activity {
 
         protected Boolean doInBackground(String... args) {
             try{
-                Thread.sleep(4000);
+                Thread.sleep(1000);
             }
             catch (InterruptedException ie){
                 ie.printStackTrace();
             }
-            DataBaseHelper dbh = new DataBaseHelper(SplashActivity.this);
-            dbh.getExistingData();
+            try{
+                DataBaseHelper dbh = new DataBaseHelper(SplashActivity.this);
+                dbh.getExistingData();
+            }
+            catch (IOException io){
+                Log.e("","");
+            }
 
             // possibly more dataBase work to be done here
 

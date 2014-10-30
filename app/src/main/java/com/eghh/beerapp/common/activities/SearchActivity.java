@@ -3,24 +3,31 @@ package com.eghh.beerapp.common.activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.eghh.beerapp.common.BeerModel;
+import com.eghh.beerapp.common.DataBaseHelper;
 import com.eghh.beerapp.common.JSONParser;
 import com.eghh.beerapp.common.app.AppController;
 import com.eghh.beerapp.common.fragments.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SearchActivity extends SampleActivityBase {
     private static String key = "0bb957499c324525521a89186b87e785";
@@ -46,7 +53,6 @@ public class SearchActivity extends SampleActivityBase {
             this.mContext = context;
             this.mView = view;
         }
-
 
         protected void onPreExecute() {
             this.mDialog.setMessage("Finding delicious beers...");
@@ -98,12 +104,20 @@ public class SearchActivity extends SampleActivityBase {
 
                     TextView name_text, description_text, percentage_text;
 
+//                    -----To display img from DB------
+//                    DataBaseHelper dbh = new DataBaseHelper(ctx);
+//                    ArrayList<HashMap<String, Object>> rList = dbh.getInfoFromDb();
+//                    Object picObj = rList.get(0).get("mPic");
+//                    byte[] picArray = (byte[]) picObj;
+//                    ImageView img = (ImageView) convertView.findViewById(R.id.img);
+//                    img.setImageBitmap(BitmapFactory.decodeByteArray(picArray, 0, picArray.length));
+
                     NetworkImageView img = (NetworkImageView) convertView.findViewById(R.id.img);
                     name_text = (TextView) convertView.findViewById(R.id.name);
                     description_text = (TextView) convertView.findViewById(R.id.description);
                     percentage_text = (TextView) convertView.findViewById(R.id.percentage);
 
-                    img.setImageUrl(beerList.get(position).image, imageLoader);
+                    img.setImageUrl(beerList.get(position).mImage, imageLoader);
                     name_text.setText(beerList.get(position).beerName);
                     description_text.setText(beerList.get(position).beerDesc);
                     percentage_text.setText("Alc. : " + beerList.get(position).beerPercentage + "% vol.");
@@ -126,7 +140,7 @@ public class SearchActivity extends SampleActivityBase {
                 try {
                     JSONObject beer = json.getJSONObject(i);
                     String vtype = beer.getString(type);
-                    String[] bmArray = new String[8];
+                    String[] bmArray = new String[9];
                     if(vtype.equals("beer")){
 
                         bmArray[0] = beer.getString("id");
@@ -137,6 +151,7 @@ public class SearchActivity extends SampleActivityBase {
                         bmArray[5] = beer.has("glass") ? beer.getJSONObject("glass").getString("name") : "No specific glassware";
                         bmArray[6] = "null";
                         bmArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
+                        bmArray[8] = beer.has("labels") ? beer.getJSONObject("labels").getString("large") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
                         BeerModel bm = new BeerModel(bmArray);
                         beerList.add(bm);
                     }

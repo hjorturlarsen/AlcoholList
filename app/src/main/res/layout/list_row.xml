@@ -12,6 +12,15 @@
         android:layout_alignParentLeft="true"
         android:layout_marginRight="8dp" />
 
+    <!--Will be used to display pic from Db-->
+    <!--<ImageView-->
+        <!--android:id="@+id/img"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_marginRight="8dp" />-->
+    <!--Will be used to display pic from Db-->
+
     <!-- Beer name -->
     <TextView
         android:id="@+id/name"

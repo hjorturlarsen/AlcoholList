@@ -3,12 +3,14 @@ package com.eghh.beerapp.common.activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -36,6 +38,8 @@ public class SearchActivity extends SampleActivityBase {
     public static ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
     private static final String type = "type";
     private ListView lv;
+
+
 
     public void parseJson(Context context, String s, ProgressDialog pd, View view){
         s = s.replace(" ", "+");
@@ -127,8 +131,19 @@ public class SearchActivity extends SampleActivityBase {
             }
 
             lv = (ListView) mView.findViewById(R.id.search_listView);
-            lv.setAdapter(new dataListAdapter(mContext, output_list));
+            dataListAdapter adapter = new dataListAdapter(mContext, output_list);
+            lv.setAdapter(adapter);
+
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent beerInfo = new Intent(mContext, beerInfo.class);
+                    mContext.startActivity(beerInfo);
+                }
+            });
         }
+
+
 
         protected  ArrayList<BeerModel> doInBackground(String... args) {
 

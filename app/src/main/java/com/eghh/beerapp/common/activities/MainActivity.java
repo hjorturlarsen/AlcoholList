@@ -1,11 +1,16 @@
 package com.eghh.beerapp.common.activities;
 
 import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.eghh.beerapp.common.view.SlidingTabLayout;
@@ -32,6 +37,7 @@ public class MainActivity extends SampleActivityBase {
 
         ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
         SlidingTabLayout tab = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+        tab.setCustomTabView(R.layout.custom_tab, 0);
         CustomPagerAdapter pagerAdapter = new CustomPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
         tab.setViewPager(pager);
@@ -86,12 +92,21 @@ public class MainActivity extends SampleActivityBase {
         {
             return 5;
         }
-
-        Resources res = getResources();
-        String[] titles = res.getStringArray(R.array.titles);
+            private int[] res ={
+                  R.drawable.i_achive,
+                  R.drawable.i_fbeer,
+                  R.drawable.i_search,
+                  R.drawable.i_ebeer,
+                  R.drawable.i_explore
+            };
         @Override
         public CharSequence getPageTitle(int position) {
-           return titles[position];
+            Drawable image = getResources().getDrawable(res[position]);
+            image.setBounds(0,0,image.getIntrinsicWidth(), image.getIntrinsicHeight());
+            SpannableString sb = new SpannableString(" ");
+            ImageSpan imgSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);
+            sb.setSpan(imgSpan, 0 , 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            return sb;
         }
     }
 }

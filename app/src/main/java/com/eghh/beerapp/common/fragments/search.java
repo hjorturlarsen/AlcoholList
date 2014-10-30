@@ -28,6 +28,7 @@ public class search extends Fragment
         final View mView = getView().findViewById(R.id.fragment_search);
         final SearchView searchView = (SearchView) mView.findViewById(R.id.search_searchView);
 
+        searchView.setFocusable(false);
         searchView.setIconifiedByDefault(false);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -1,9 +1,5 @@
 package com.eghh.beerapp.common.view;
 
-/**
- * Created by Hjortur on 10.10.2014.
- */
-
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -87,6 +83,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         mTabStrip = new SlidingTabStrip(context);
         addView(mTabStrip, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
     }
 
     /**
@@ -285,12 +282,12 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
         }
 
-    }
+            }
 
-    private class TabClickListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            for (int i = 0; i < mTabStrip.getChildCount(); i++) {
+            private class TabClickListener implements View.OnClickListener {
+                @Override
+                public void onClick(View v) {
+                    for (int i = 0; i < mTabStrip.getChildCount(); i++) {
                 if (v == mTabStrip.getChildAt(i)) {
                     mViewPager.setCurrentItem(i);
                     return;

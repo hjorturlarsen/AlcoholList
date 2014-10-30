@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="titles">
-        <item>Achievements</item>
-        <item>Favorites</item>
-        <item>Search</item>
-        <item>To drink</item>
-        <item>Explore</item>
-    </string-array>
+    <!--<string-array name="titles">-->
+        <!--<item>@drawable/i_search</item>-->
+        <!--<item>@drawable/i_search</item>-->
+        <!--<item>@drawable/i_search</item>-->
+        <!--<item>@drawable/i_search</item>-->
+        <!--<item>@drawable/i_search</item>-->
+    <!--</string-array>-->
 
     <string name="search_hint">Some tasty beer...</string>
     <string name="search_result"></string>

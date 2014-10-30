@@ -29,13 +29,13 @@ public class MainActivity extends SampleActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("kúkur");
 
         ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
         SlidingTabLayout tab = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-
-        pager.setAdapter(new CustomPagerAdapter(getSupportFragmentManager()));
+        CustomPagerAdapter pagerAdapter = new CustomPagerAdapter(getSupportFragmentManager());
+        pager.setAdapter(pagerAdapter);
         tab.setViewPager(pager);
+        pager.setCurrentItem(2);
     }
 
 

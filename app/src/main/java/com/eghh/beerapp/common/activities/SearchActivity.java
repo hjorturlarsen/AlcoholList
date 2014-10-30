@@ -120,7 +120,7 @@ public class SearchActivity extends SampleActivityBase {
                     img.setImageUrl(beerList.get(position).mImage, imageLoader);
                     name_text.setText(beerList.get(position).beerName);
                     description_text.setText(beerList.get(position).beerDesc);
-                    percentage_text.setText("Alc. : " + beerList.get(position).beerPercentage + "% vol.");
+                    percentage_text.setText("Alc. " + beerList.get(position).beerPercentage + "% vol.");
 
                     return convertView;
                 }

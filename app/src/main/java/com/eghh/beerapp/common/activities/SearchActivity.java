@@ -4,22 +4,18 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.eghh.beerapp.common.BeerModel;
-import com.eghh.beerapp.common.DataBaseHelper;
 import com.eghh.beerapp.common.JSONParser;
 import com.eghh.beerapp.common.app.AppController;
 import com.eghh.beerapp.common.fragments.R;
@@ -27,18 +23,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
+/**
+ * A class for background work done in search fragment.
+ * Creates a request for the www.brewerydb.com API and sends the request.
+ * Gets and displays the results in a listView inside the search fragment.
+ */
 public class SearchActivity extends SampleActivityBase {
     private static String key = "0bb957499c324525521a89186b87e785";
-    //ArrayList<HashMap<String, String>> jsonlist = new ArrayList<HashMap<String, String>>();
-    //ArrayList<JSONObject> breweryList = new ArrayList<JSONObject>();
     public static ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
     private static final String type = "type";
-    private ListView lv;
-
 
 
     public void parseJson(Context context, String s, ProgressDialog pd, View view){
@@ -47,10 +42,15 @@ public class SearchActivity extends SampleActivityBase {
         new ProgressTask(context, pd, view).execute(url);
     }
 
+    /**
+     * Displays a dialog while searching for results.
+     * Then loads images and text in listView in the search fragment.
+     */
     private class ProgressTask extends AsyncTask<String, Void, ArrayList<BeerModel>> {
         public ProgressDialog mDialog;
         public Context mContext;
         public View mView;
+        public ListView lv;
 
         public ProgressTask(Context context, ProgressDialog pd, View view){
             this.mDialog = pd;
@@ -137,7 +137,11 @@ public class SearchActivity extends SampleActivityBase {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent beerInfo = new Intent(mContext, beerInfo.class);
+                    Intent beerInfo = new Intent(mContext, BeerInfoActivity.class);
+                    beerInfo.putExtra("beerName", beerList.get(position).beerName);
+                    beerInfo.putExtra("beerDesc", beerList.get(position).beerDesc);
+                    beerInfo.putExtra("beerPercentage", beerList.get(position).beerPercentage);
+                    beerInfo.putExtra("beerImage", beerList.get(position).mImage);
                     mContext.startActivity(beerInfo);
                 }
             });
@@ -157,7 +161,6 @@ public class SearchActivity extends SampleActivityBase {
                     String vtype = beer.getString(type);
                     String[] bmArray = new String[9];
                     if(vtype.equals("beer")){
-
                         bmArray[0] = beer.getString("id");
                         bmArray[1] = beer.getString("name");
                         bmArray[2] = beer.getString("abv");

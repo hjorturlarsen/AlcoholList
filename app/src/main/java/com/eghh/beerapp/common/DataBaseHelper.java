@@ -60,8 +60,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
     public void getExistingData() throws IOException{
-        SQLiteDatabase sdb = this.getWritableDatabase();
-        onCreate(sdb);
+        //SQLiteDatabase sdb = this.getWritableDatabase();
+        //onCreate(sdb);
         //---Deletes based on unique ID---
         //deleteFromDb("test2H");
         //---Deletes based on unique ID---
@@ -71,7 +71,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 //        BeerModel bmod = new BeerModel(ss);
 //        insertToDb(bmod);
         //---Inserts to DB---
-        getInfoFromDb();
+        //getInfoFromDb();
     }
     public void insertToDb(BeerModel bm) throws SQLiteException, IOException{
         try{

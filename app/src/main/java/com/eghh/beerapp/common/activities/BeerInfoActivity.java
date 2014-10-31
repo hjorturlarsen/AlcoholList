@@ -11,10 +11,13 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.app.AppController;
 import com.eghh.beerapp.common.fragments.R;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 /**
  * Displays more information about a beer that has been clicked on in the search.
@@ -29,8 +32,9 @@ public class BeerInfoActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extras = getIntent().getExtras();
         setContentView(R.layout.beer_info);
+        Bundle extras = getIntent().getExtras();
+        BeerModel beerModel = extras.getParcelable("beerModel");
 
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
@@ -41,17 +45,10 @@ public class BeerInfoActivity extends Activity {
         haveDrunk = (CheckBox) findViewById(R.id.have_drunk);
         ratingBar = (RatingBar) findViewById(R.id.rating);
 
-        ratingBar.setFocusableInTouchMode(false);
-
-        if(haveDrunk.isChecked()){
-            ratingBar.setFocusableInTouchMode(true);
-        }
-
-
-        name.setText(extras.getString("beerName"));
-        desc.setText(extras.getString("beerDesc"));
-        percentage.setText("Alc. " + extras.getString("beerPercentage") + "% vol.");
-        img.setImageUrl(extras.getString("beerImage"), imageLoader);
+        name.setText(beerModel.beerName);
+        desc.setText(beerModel.beerDesc);
+        percentage.setText(beerModel.beerPercentage);
+        img.setImageUrl(beerModel.mImage, imageLoader);
 
     }
 

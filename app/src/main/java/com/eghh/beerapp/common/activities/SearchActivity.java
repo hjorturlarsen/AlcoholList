@@ -133,15 +133,15 @@ public class SearchActivity extends SampleActivityBase {
             lv = (ListView) mView.findViewById(R.id.search_listView);
             dataListAdapter adapter = new dataListAdapter(mContext, output_list);
             lv.setAdapter(adapter);
-
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                /**
+                 * Responds to click on an item in the search result's listView.
+                 */
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent beerInfo = new Intent(mContext, BeerInfoActivity.class);
-                    beerInfo.putExtra("beerName", beerList.get(position).beerName);
-                    beerInfo.putExtra("beerDesc", beerList.get(position).beerDesc);
-                    beerInfo.putExtra("beerPercentage", beerList.get(position).beerPercentage);
-                    beerInfo.putExtra("beerImage", beerList.get(position).mImage);
+                    beerInfo.putExtra("beerModel", beerList.get(position));
                     mContext.startActivity(beerInfo);
                 }
             });
@@ -159,19 +159,19 @@ public class SearchActivity extends SampleActivityBase {
                 try {
                     JSONObject beer = json.getJSONObject(i);
                     String vtype = beer.getString(type);
-                    String[] bmArray = new String[9];
+                    String[] beerModelArray = new String[9];
                     if(vtype.equals("beer")){
-                        bmArray[0] = beer.getString("id");
-                        bmArray[1] = beer.getString("name");
-                        bmArray[2] = beer.getString("abv");
-                        bmArray[3] = beer.has("isOrganic") ? beer.getString("isOrganic") : "N";
-                        bmArray[4] = beer.has("style") ? beer.getJSONObject("style").getString("description") : beer.getString("description");
-                        bmArray[5] = beer.has("glass") ? beer.getJSONObject("glass").getString("name") : "No specific glassware";
-                        bmArray[6] = "null";
-                        bmArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
-                        bmArray[8] = beer.has("labels") ? beer.getJSONObject("labels").getString("large") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
-                        BeerModel bm = new BeerModel(bmArray);
-                        beerList.add(bm);
+                        beerModelArray[0] = beer.getString("id");
+                        beerModelArray[1] = beer.getString("name");
+                        beerModelArray[2] = beer.getString("abv");
+                        beerModelArray[3] = beer.has("isOrganic") ? beer.getString("isOrganic") : "N";
+                        beerModelArray[4] = beer.has("style") ? beer.getJSONObject("style").getString("description") : beer.getString("description");
+                        beerModelArray[5] = beer.has("glass") ? beer.getJSONObject("glass").getString("name") : "No specific glassware";
+                        beerModelArray[6] = "null";
+                        beerModelArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
+                        beerModelArray[8] = beer.has("labels") ? beer.getJSONObject("labels").getString("large") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
+                        BeerModel beerModel = new BeerModel(beerModelArray);
+                        beerList.add(beerModel);
                     }
 
                 } catch (JSONException e)

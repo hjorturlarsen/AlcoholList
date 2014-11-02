@@ -23,6 +23,7 @@
             android:name="com.eghh.beerapp.common.activities.MainActivity"
             android:label="@string/app_name" >
         </activity>
+
         <activity
             android:name="com.eghh.beerapp.common.activities.SplashActivity"
             android:label="@string/title_activity_splash">
@@ -31,6 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="@string/app_name" android:name="com.eghh.beerapp.common.activities.beerInfo"/>
+
+        <activity
+            android:label="@string/app_name" android:name="com.eghh.beerapp.common.activities.BeerInfoActivity"
+            android:parentActivityName="com.eghh.beerapp.common.activities.MainActivity" />
     </application>
 </manifest>

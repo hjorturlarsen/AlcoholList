@@ -37,7 +37,6 @@ public class BeerInfoActivity extends Activity {
         BeerModel beerModel = extras.getParcelable("beerModel");
 
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-
         name = (TextView) findViewById(R.id.info_beerName);
         desc = (TextView) findViewById(R.id.info_beerDesc);
         percentage = (TextView) findViewById(R.id.info_beerPercentage);

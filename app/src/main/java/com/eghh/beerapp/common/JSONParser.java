@@ -29,6 +29,7 @@ public class JSONParser {
     public JSONParser() {
     }
 
+    //Post: Parses json from url and return a array of JSON objects
     public JSONArray getJSONFromUrl(String url) {
 
         StringBuilder builder = new StringBuilder();

@@ -44,7 +44,6 @@ public class MainActivity extends SampleActivityBase {
         pager.setCurrentItem(2);
     }
 
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         return super.onPrepareOptionsMenu(menu);
@@ -92,13 +91,15 @@ public class MainActivity extends SampleActivityBase {
         {
             return 5;
         }
-            private int[] res ={
-                  R.drawable.i_achive,
-                  R.drawable.i_fbeer,
-                  R.drawable.i_search,
-                  R.drawable.i_ebeer,
-                  R.drawable.i_explore
-            };
+        private int[] res ={
+              R.drawable.i_achive,
+              R.drawable.i_fbeer,
+              R.drawable.i_search,
+              R.drawable.i_ebeer,
+              R.drawable.i_explore
+        };
+
+        //Post: displays images in sliding tab
         @Override
         public CharSequence getPageTitle(int position) {
             Drawable image = getResources().getDrawable(res[position]);

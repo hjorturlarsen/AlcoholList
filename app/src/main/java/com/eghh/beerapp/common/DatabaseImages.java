@@ -26,6 +26,7 @@ public class DatabaseImages {
 
     }
 
+    //Post: Return the image gotten from the URL as a byte array
     public byte[] convertImage(String url) throws IOException{
         url.replace("https","http");
         HttpClient mHttpClient = new DefaultHttpClient();

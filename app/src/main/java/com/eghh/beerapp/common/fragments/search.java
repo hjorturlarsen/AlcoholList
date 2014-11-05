@@ -13,6 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.eghh.beerapp.common.activities.SearchActivity;
 
+/**
+ * Class for the 'search' tab.
+ * Lets user type in a search word and sends the search word over to SearchActivity class
+ * where it is processed further.
+ */
 public class search extends Fragment
 {
     public static search newInstance()
@@ -56,8 +61,8 @@ public class search extends Fragment
 
     }
 
-    @Override
     //Locks the screen orientation to Portrait mode.
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if(isVisibleToUser) {

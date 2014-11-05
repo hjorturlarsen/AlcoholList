@@ -1,37 +1,39 @@
 package com.eghh.beerapp.common.activities;
 
 import android.app.Activity;
-import android.media.Rating;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.RatingBar;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
-
+import android.view.View.OnClickListener;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.app.AppController;
 import com.eghh.beerapp.common.fragments.R;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
 /**
- * Displays more information about a beer that has been clicked on in the search.
+ * Team: EGHH
+ * Displays more information about a beer that has been clicked on in the search result list view.
  */
 public class BeerInfoActivity extends Activity {
 
     TextView name, desc, percentage;
     NetworkImageView img;
-    CheckBox haveDrunk;
-    RatingBar ratingBar;
+    ImageButton btn_rateBeer, btn_tryLater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        init();
+    }
+
+    /**
+     * Initializes view and variables and GUI objects.
+     */
+    public void init() {
         setContentView(R.layout.beer_info);
         Bundle extras = getIntent().getExtras();
         BeerModel beerModel = extras.getParcelable("beerModel");
@@ -41,15 +43,29 @@ public class BeerInfoActivity extends Activity {
         desc = (TextView) findViewById(R.id.info_beerDesc);
         percentage = (TextView) findViewById(R.id.info_beerPercentage);
         img = (NetworkImageView) findViewById(R.id.info_img);
-        haveDrunk = (CheckBox) findViewById(R.id.have_drunk);
-        ratingBar = (RatingBar) findViewById(R.id.rating);
+        btn_rateBeer = (ImageButton) findViewById(R.id.rate);
+        btn_tryLater = (ImageButton) findViewById(R.id.try_later);
 
         name.setText(beerModel.beerName);
         desc.setText(beerModel.beerDesc);
         percentage.setText(beerModel.beerPercentage);
         img.setImageUrl(beerModel.mImage, imageLoader);
 
+        btn_rateBeer.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        btn_tryLater.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 /**
  Team : EGHH
- Dags : 10.10'14
+ Date : 10.10'14
 
  This class makes a model for each beer that comes up from the search result.
  **/

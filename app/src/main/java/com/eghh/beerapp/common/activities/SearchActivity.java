@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.eghh.beerapp.common.BeerModel;
@@ -26,9 +25,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * A class for background work done in search fragment.
+ * A class for background work done in search tab.
  * Creates a request for the www.brewerydb.com API and sends the request.
- * Gets and displays the results in a listView inside the search fragment.
+ * Gets and displays the results in a list view inside the search tab.
  */
 public class SearchActivity extends SampleActivityBase {
     private static String key = "0bb957499c324525521a89186b87e785";
@@ -44,7 +43,8 @@ public class SearchActivity extends SampleActivityBase {
 
     /**
      * Displays a dialog while searching for results.
-     * Then loads images and text in listView in the search fragment.
+     * Sends request to www.brewerydb.com and gathers information for the search input.
+     * Loads images and text in listView in the search fragment.
      */
     private class ProgressTask extends AsyncTask<String, Void, ArrayList<BeerModel>> {
         public ProgressDialog mDialog;
@@ -58,12 +58,18 @@ public class SearchActivity extends SampleActivityBase {
             this.mView = view;
         }
 
+        /**
+         * Show dialog on start of the process
+         */
         protected void onPreExecute() {
             this.mDialog.setMessage("Finding delicious beers...");
             this.mDialog.show();
             beerList.clear();
         }
 
+        /**
+         * Show results when the process is over
+         */
         @Override
         protected void onPostExecute(final ArrayList<BeerModel> output_list) {
             if (mDialog.isShowing()) {
@@ -93,6 +99,9 @@ public class SearchActivity extends SampleActivityBase {
                     return position;
                 }
 
+                /**
+                 * Set text and images for each list view.
+                 */
                 public View getView(int position, View convertView, ViewGroup parent)
                 {
                     if(convertView == null){
@@ -129,6 +138,7 @@ public class SearchActivity extends SampleActivityBase {
 
                 /**
                  * Responds to click on an item in the search result's listView.
+                 * Opens a new activity with further information about the beer that was clicked.
                  */
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -140,7 +150,10 @@ public class SearchActivity extends SampleActivityBase {
         }
 
 
-
+        /**
+         * Gets results from brewerydb.com and creates and returns an array list of beerModel
+         * objects.
+         */
         protected  ArrayList<BeerModel> doInBackground(String... args) {
 
             JSONParser jParser = new JSONParser();

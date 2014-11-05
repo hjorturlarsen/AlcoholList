@@ -15,32 +15,36 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <com.android.volley.toolbox.NetworkImageView
                     android:id="@+id/info_img"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"/>
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_gravity="center"
+                    />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:gravity="center">
 
-                    <CheckBox
-                        android:id="@+id/have_drunk"
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Drunken"/>
+                        android:id="@+id/rate"
+                        android:src="@drawable/i_empty_beer"/>
 
-                    <RatingBar
-                        android:id="@+id/rating"
+
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:numStars="5"
-                        android:layout_gravity="center"/>
+                        android:id="@+id/try_later"
+                        android:src="@drawable/i_full_beer"/>
+
 
                     </LinearLayout>
 

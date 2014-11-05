@@ -5,29 +5,25 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Class for the 'achievement' tab
+ */
 public class achievements extends Fragment
 {
-    private FragmentTabHost mTabHost;
     public static achievements newInstance()
     {
         return new achievements();
     }
 
 
-    /*Þetta er í staðinn fyrir onCreate af einhverjum góðum ástæðum
-      getView skilar veiw-inu sem við ætlum að vinna með, svo við getum útfært takka og annað
-    */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
-        View view = getView().findViewById(R.id.fragment_achievements);
     }
 
     @Override
@@ -37,7 +33,10 @@ public class achievements extends Fragment
     }
 
     @Override
-    //Locks the screen orientation to Portrait mode.
+
+    /**
+     * Locks the screen orientation to Portrait mode.
+     */
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if(isVisibleToUser) {

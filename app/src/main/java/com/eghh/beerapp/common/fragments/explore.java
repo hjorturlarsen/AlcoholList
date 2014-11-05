@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Class for the 'explore' tab.
+ */
 public class explore extends Fragment
 {
     public static explore newInstance()

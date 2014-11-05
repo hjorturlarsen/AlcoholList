@@ -108,14 +108,6 @@ public class SearchActivity extends SampleActivityBase {
 
                     TextView name_text, description_text, percentage_text;
 
-//                    -----To display img from DB------
-//                    DataBaseHelper dbh = new DataBaseHelper(ctx);
-//                    ArrayList<HashMap<String, Object>> rList = dbh.getInfoFromDb();
-//                    Object picObj = rList.get(0).get("mPic");
-//                    byte[] picArray = (byte[]) picObj;
-//                    ImageView img = (ImageView) convertView.findViewById(R.id.img);
-//                    img.setImageBitmap(BitmapFactory.decodeByteArray(picArray, 0, picArray.length));
-
                     NetworkImageView img = (NetworkImageView) convertView.findViewById(R.id.img);
                     name_text = (TextView) convertView.findViewById(R.id.name);
                     description_text = (TextView) convertView.findViewById(R.id.description);

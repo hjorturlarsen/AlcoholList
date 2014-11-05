@@ -23,7 +23,7 @@ public class BeerModel implements Parcelable{
         this.organic = strings[3];
         this.beerDesc = strings[4];
         this.glassName = strings[5];
-        this.organic = strings[6];
+        this.hasRated = strings[6];
         this.mImage = strings[7];
         this.lImage = strings[8];
     }

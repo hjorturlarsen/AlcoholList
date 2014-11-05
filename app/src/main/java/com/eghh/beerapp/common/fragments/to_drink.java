@@ -8,6 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.eghh.beerapp.common.DataBaseHelper;
+import com.eghh.beerapp.common.DataListAdapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class to_drink extends Fragment{
     public static to_drink newInstance()
@@ -20,7 +27,10 @@ public class to_drink extends Fragment{
     {
         super.onActivityCreated(savedInstanceState);
 
-        //getView().findViewById(R.id.fragment_to_drink);
+        ArrayList<HashMap<String, Object>> toDrinkList = DataBaseHelper.getToDrinkList();
+        ListView lv = (ListView) getView().findViewById(R.id.to_drink_ListView);
+        DataListAdapter adapter = new DataListAdapter(getActivity(), toDrinkList);
+        lv.setAdapter(adapter);
     }
 
     @Override

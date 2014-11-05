@@ -1,7 +1,9 @@
 package com.eghh.beerapp.common.activities;
 
 /**
- * Created by Hjortur on 10.10.2014.
+ * Team: EGHH
+ * Date: 10.10.2014
+ * Related to sliding tab view.
  */
 
 import android.os.Bundle;

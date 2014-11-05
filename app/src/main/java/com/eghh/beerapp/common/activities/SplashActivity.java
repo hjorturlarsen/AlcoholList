@@ -60,7 +60,7 @@ public class SplashActivity extends Activity {
                 DataBaseHelper dbh = new DataBaseHelper(SplashActivity.this);
                 dbh.getExistingData();
             }
-            catch (IOException io){
+            catch (Exception io){
                 Log.e("","");
             }
 

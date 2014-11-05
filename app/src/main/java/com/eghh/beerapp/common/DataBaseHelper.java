@@ -65,7 +65,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 " mPic BLOB," +
                 " lPic BLOB," +
                 " UNIQUE(BeerId));");
-        db.close();
+        //db.close();
 
         //db.execSQL("Delete from UserData");
 //        db.execSQL("Delete from UserPass2");
@@ -81,7 +81,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //---Deletes based on unique ID---
 
         //---Inserts to DB---
-//        String[] ss = new String[] {"DBPorn12", "TastyPenis", "7.6", "Y", "TEstDesc for penis", "gName", "true", "https://s3.amazonaws.com/brewerydbapi/beer/jPKm8m/upload_t0TE5l-medium.png", "https://s3.amazonaws.com/brewerydbapi/beer/jPKm8m/upload_t0TE5l-large.png"};
+//        String[] ss = new String[] {"someId", "Viking Gylltur", "7.6", "Y", "TEstDesc for beer", "gName", "true", "https://s3.amazonaws.com/brewerydbapi/beer/jPKm8m/upload_t0TE5l-medium.png", "https://s3.amazonaws.com/brewerydbapi/beer/jPKm8m/upload_t0TE5l-large.png"};
 //        BeerModel bmod = new BeerModel(ss);
 //        insertToDb(bmod, null);
         //---Inserts to DB---
@@ -174,6 +174,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     //Post: Everytime the getInfoFromDb method is called the 2 static lists are updated
     //      and can therefore be accessed with correct information everytime
     public static void setToStatic(ArrayList<HashMap<String, Object>> a1, ArrayList<HashMap<String, Object>> a2){
+        if (sRatedList != null && sToDrinkList != null){
+            sRatedList.clear();
+            sToDrinkList.clear();
+        }
         sRatedList = a1;
         sToDrinkList = a2;
     }
@@ -197,6 +201,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL("UPDATE UserData SET HasRated = 1, Rating =" + rating + " WHERE BeerId ='" + beerId + "'");
             db.close();
+            getInfoFromDb();
         }
         catch (SQLiteException ex){
             Log.e("Error...", "Failed to delete");

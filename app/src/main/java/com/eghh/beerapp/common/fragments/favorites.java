@@ -1,31 +1,25 @@
 package com.eghh.beerapp.common.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
-import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.DataBaseHelper;
 import com.eghh.beerapp.common.DataListAdapter;
-import com.eghh.beerapp.common.app.AppController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
+/**
+ * Class for the 'favorites' tab.
+ * Gets rated beers from local database and displays them in list view.
+ */
 public class favorites extends Fragment {
     public static favorites newInstance()
     {

@@ -16,6 +16,10 @@ import com.eghh.beerapp.common.DataListAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Class for the 'to drink' tab.
+ * Reads "to drink" beers from local datbase and shows results in list view.
+ */
 public class to_drink extends Fragment{
     public static to_drink newInstance()
     {

@@ -1,7 +1,5 @@
 package com.eghh.beerapp.common.activities;
 
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -43,6 +41,7 @@ public class MainActivity extends SampleActivityBase {
         tab.setViewPager(pager);
         pager.setCurrentItem(2);
     }
+
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -91,15 +90,13 @@ public class MainActivity extends SampleActivityBase {
         {
             return 5;
         }
-        private int[] res ={
-              R.drawable.i_achive,
-              R.drawable.i_fbeer,
-              R.drawable.i_search,
-              R.drawable.i_ebeer,
-              R.drawable.i_explore
-        };
-
-        //Post: displays images in sliding tab
+            private int[] res ={
+                  R.drawable.i_achive,
+                  R.drawable.i_full_beer,
+                  R.drawable.i_search,
+                  R.drawable.i_empty_beer,
+                  R.drawable.i_explore
+            };
         @Override
         public CharSequence getPageTitle(int position) {
             Drawable image = getResources().getDrawable(res[position]);

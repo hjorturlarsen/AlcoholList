@@ -174,8 +174,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     //Post: Everytime the getInfoFromDb method is called the 2 static lists are updated
     //      and can therefore be accessed with correct information everytime
     public static void setToStatic(ArrayList<HashMap<String, Object>> a1, ArrayList<HashMap<String, Object>> a2){
-        sRatedList.clear();
-        sToDrinkList.clear();
+        if (sRatedList != null && sToDrinkList != null){
+            sRatedList.clear();
+            sToDrinkList.clear();
+        }
         sRatedList = a1;
         sToDrinkList = a2;
     }

@@ -1,11 +1,14 @@
 package com.eghh.beerapp.common;
 
 import android.content.ContentValues;
+import android.graphics.drawable.Drawable;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -28,7 +31,7 @@ public class DatabaseImages {
 
     //Post: Return the image gotten from the URL as a byte array
     public byte[] convertImage(String url) throws IOException{
-        url.replace("https","http");
+        //url = url.replace("https","http");
         HttpClient mHttpClient = new DefaultHttpClient();
         HttpGet mHttpGet = new HttpGet(url);
         try{
@@ -42,6 +45,12 @@ public class DatabaseImages {
             else {
                 Log.e("Error...", "Failed to download image");
             }
+        }
+        catch (ClientProtocolException cpe){
+            cpe.printStackTrace();
+        }
+        catch (NetworkOnMainThreadException nomte){
+            nomte.printStackTrace();
         }
         catch (IOException ioe){
             ioe.printStackTrace();

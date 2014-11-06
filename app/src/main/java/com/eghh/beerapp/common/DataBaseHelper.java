@@ -117,13 +117,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             insertStmt.bindBlob(11, lImageByte);
             insertStmt.executeInsert();
             db.close();
+            getInfoFromDb();
         }
         catch (SQLiteException ex){
             Log.e("Error..." + ex, "Failed to insert");
             //Possibly display some warning to user???
         }
         catch (IOException ioex){
-            Log.e("Error...", "Failed to get image");
+            Log.e("Error..." + ioex, "Failed to get image");
             //Possibly display some warning to user???
         }
     }
@@ -186,6 +187,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL("DELETE FROM UserData WHERE BeerId ='" + beerId + "'");
             db.close();
+            getInfoFromDb();
         }
         catch (SQLiteException ex){
             Log.e("Error...", "Failed to delete");

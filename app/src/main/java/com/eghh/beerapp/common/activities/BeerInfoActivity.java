@@ -2,6 +2,8 @@ package com.eghh.beerapp.common.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,6 +14,9 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.app.AppController;
 import com.eghh.beerapp.common.fragments.R;
+import com.eghh.beerapp.common.DataBaseHelper;
+
+import java.io.IOException;
 
 /**
  * Team: EGHH
@@ -22,6 +27,7 @@ public class BeerInfoActivity extends Activity {
     TextView name, desc, percentage;
     NetworkImageView img;
     ImageButton btn_rateBeer, btn_tryLater;
+    DataBaseHelper dbh = new DataBaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +42,7 @@ public class BeerInfoActivity extends Activity {
     public void init() {
         setContentView(R.layout.beer_info);
         Bundle extras = getIntent().getExtras();
-        BeerModel beerModel = extras.getParcelable("beerModel");
+        final BeerModel beerModel = extras.getParcelable("beerModel");
 
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
         name = (TextView) findViewById(R.id.info_beerName);
@@ -54,13 +60,32 @@ public class BeerInfoActivity extends Activity {
         btn_rateBeer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            dbh.insertToDb(beerModel, 5);
+                        }
+                        catch (IOException ioe){
+                            ioe.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         });
         btn_tryLater.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v){
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            dbh.insertToDb(beerModel, null);
+                        }
+                        catch (IOException ioe){
+                            ioe.printStackTrace();
+                        }
+                    }
+                }).start();
+                //onBackPressed();
             }
         });
     }

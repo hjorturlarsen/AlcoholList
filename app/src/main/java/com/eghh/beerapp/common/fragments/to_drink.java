@@ -25,9 +25,6 @@ public class to_drink extends Fragment{
         return new to_drink();
     }
 
-    ListView lv;
-    TextView to_drink_empty;
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
@@ -35,15 +32,11 @@ public class to_drink extends Fragment{
 
         ArrayList<HashMap<String, Object>> toDrinkList = DataBaseHelper.getToDrinkList();
 
-        if(toDrinkList.isEmpty()){
-            to_drink_empty = (TextView) getView().findViewById(R.id.to_drink_empty);
-            to_drink_empty.setText(R.string.to_drink_empty);
-        }
-        else{
-             lv = (ListView) getView().findViewById(R.id.to_drink_ListView);
-            DataListAdapter adapter = new DataListAdapter(getActivity(), toDrinkList);
-            lv.setAdapter(adapter);
-        }
+        ListView lv = (ListView) getView().findViewById(R.id.to_drink_ListView);
+        DataListAdapter adapter = new DataListAdapter(getActivity(), toDrinkList);
+        lv.setAdapter(adapter);
+        lv.setEmptyView(getView().findViewById(R.id.to_drink_empty));
+
     }
 
     @Override

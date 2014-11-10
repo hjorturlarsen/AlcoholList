@@ -26,24 +26,18 @@ public class have_drunk extends Fragment {
         return new have_drunk();
     }
 
-    ListView lv;
-    TextView have_drunk_empty;
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
 
         ArrayList<HashMap<String, Object>> ratedList = DataBaseHelper.getRatedList();
-        if(ratedList.isEmpty()){
-            have_drunk_empty = (TextView) getView().findViewById(R.id.have_drunk_empty);
-            have_drunk_empty.setText(R.string.have_drunk_empty);
-        }
-        else{
-            lv = (ListView) getView().findViewById(R.id.favorites_ListView);
-            DataListAdapter adapter = new DataListAdapter(getActivity(), ratedList);
-            lv.setAdapter(adapter);
-        }
+
+
+        ListView lv = (ListView) getView().findViewById(R.id.favorites_ListView);
+        DataListAdapter adapter = new DataListAdapter(getActivity(), ratedList);
+        lv.setAdapter(adapter);
+        lv.setEmptyView(getView().findViewById(R.id.have_drunk_empty));
 
     }
 

@@ -2,16 +2,23 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:id="@+id/fragment_favorites">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/have_drunk_empty"
-        android:layout_gravity="center"
-        android:background="@color/black_trans"
-        android:padding="10dp"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/have_drunk_empty"
+            android:background="@color/black_trans"
+            android:padding="10dp"
+            android:text="@string/have_drunk_empty"
+            android:textSize="20dp"/>
+    </RelativeLayout>
 
     <ListView
         android:layout_width="wrap_content"

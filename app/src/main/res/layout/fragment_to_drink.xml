@@ -5,13 +5,22 @@
     android:layout_height="match_parent"
     android:id="@+id/fragment_to_drink">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/to_drink_empty"
-        android:gravity="center"
-        android:background="@color/black_trans"
-        android:padding="10dp"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/to_drink_empty"
+            android:background="@color/black_trans"
+            android:padding="10dp"
+            android:text="@string/to_drink_empty"
+            android:textSize="20dp"
+            android:gravity="center"/>
+
+    </RelativeLayout>
 
     <ListView
         android:layout_width="match_parent"
@@ -20,6 +29,4 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_horizontal"
         />
-
-
 </LinearLayout>

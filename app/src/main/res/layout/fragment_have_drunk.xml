@@ -5,13 +5,20 @@
     android:layout_height="wrap_content"
     android:id="@+id/fragment_favorites">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/have_drunk_empty"
+        android:layout_gravity="center"
+        android:background="@color/black_trans"
+        android:padding="10dp"/>
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/favorites_ListView"
         android:dividerHeight="5dp"
         android:showDividers="beginning|middle|end"
-        android:divider="#a6a6a6"
         />
 
 </LinearLayout>

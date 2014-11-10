@@ -30,14 +30,13 @@ import java.util.ArrayList;
  * Gets and displays the results in a list view inside the search tab.
  */
 public class SearchActivity extends SampleActivityBase {
-    private static String key = "0bb957499c324525521a89186b87e785";
     public static ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
     private static final String type = "type";
 
 
     public void parseJson(Context context, String s, ProgressDialog pd, View view){
         s = s.replace(" ", "+");
-        String url = "http://api.brewerydb.com/v2/search?key=" + key + "&q=" + s;
+        String url = "http://api.brewerydb.com/v2/search?key=0bb957499c324525521a89186b87e785&q=" + s + "&withBreweries=Y";
         new ProgressTask(context, pd, view).execute(url);
     }
 
@@ -164,8 +163,10 @@ public class SearchActivity extends SampleActivityBase {
                 try {
                     JSONObject beer = json.getJSONObject(i);
                     String vtype = beer.getString(type);
-                    String[] beerModelArray = new String[9];
+                    String[] beerModelArray = new String[15];
                     if(vtype.equals("beer")){
+                        JSONObject brewery =  beer.getJSONArray("breweries").getJSONObject(0);
+
                         beerModelArray[0] = beer.getString("id");
                         beerModelArray[1] = beer.getString("name");
                         beerModelArray[2] = beer.getString("abv");
@@ -175,6 +176,9 @@ public class SearchActivity extends SampleActivityBase {
                         beerModelArray[6] = "null";
                         beerModelArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
                         beerModelArray[8] = beer.has("labels") ? beer.getJSONObject("labels").getString("large") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
+                        beerModelArray[9] = brewery.getString("website");
+                        beerModelArray[10] = brewery.getJSONArray("locations").getJSONObject(0).getJSONObject("country").getString("displayName");
+                        beerModelArray[11] = brewery.getString("name");
                         BeerModel beerModel = new BeerModel(beerModelArray);
                         beerList.add(beerModel);
                     }

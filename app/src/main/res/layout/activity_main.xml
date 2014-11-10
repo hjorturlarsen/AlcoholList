@@ -13,7 +13,8 @@
     <com.eghh.beerapp.common.view.SlidingTabLayout
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="@drawable/foam_background"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"

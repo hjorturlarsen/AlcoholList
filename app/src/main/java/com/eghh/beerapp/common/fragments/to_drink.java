@@ -9,10 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
+import android.widget.TextView;
 import com.eghh.beerapp.common.DataBaseHelper;
 import com.eghh.beerapp.common.DataListAdapter;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,15 +25,25 @@ public class to_drink extends Fragment{
         return new to_drink();
     }
 
+    ListView lv;
+    TextView to_drink_empty;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
 
         ArrayList<HashMap<String, Object>> toDrinkList = DataBaseHelper.getToDrinkList();
-        ListView lv = (ListView) getView().findViewById(R.id.to_drink_ListView);
-        DataListAdapter adapter = new DataListAdapter(getActivity(), toDrinkList);
-        lv.setAdapter(adapter);
+
+        if(toDrinkList.isEmpty()){
+            to_drink_empty = (TextView) getView().findViewById(R.id.to_drink_empty);
+            to_drink_empty.setText(R.string.to_drink_empty);
+        }
+        else{
+             lv = (ListView) getView().findViewById(R.id.to_drink_ListView);
+            DataListAdapter adapter = new DataListAdapter(getActivity(), toDrinkList);
+            lv.setAdapter(adapter);
+        }
     }
 
     @Override

@@ -61,16 +61,29 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/info_beerDesc"
-                android:textSize="20sp"/>
+                android:id="@+id/info_beerPercentage"/>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_beerCountry"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/info_beerPercentage"
-                android:textStyle="bold"
-                android:textSize="25sp" />
+                android:autoLink="web"
+                android:id="@+id/info_beerWebsite"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_beerBrewery"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_beerDesc"
+                android:textSize="20sp"/>
 
             </LinearLayout>
     </ScrollView>

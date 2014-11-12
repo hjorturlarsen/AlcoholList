@@ -64,6 +64,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 " Rating INT," +
                 " mPic BLOB," +
                 " lPic BLOB," +
+                " Website VARCHAR(200)," +
+                " Country VARCHAR(100)," +
+                " Brewery VARCHAR(200)," +
                 " UNIQUE(BeerId));");
         //db.close();
 
@@ -101,7 +104,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             mImageByte = dataImgHelper.convertImage(bm.mImage);
             lImageByte = dataImgHelper.convertImage(bm.lImage);
 
-            String sqlIns = "INSERT INTO UserData VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            String sqlIns = "INSERT INTO UserData VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             SQLiteStatement insertStmt = db.compileStatement(sqlIns);
             insertStmt.clearBindings();
             insertStmt.bindNull(1);
@@ -115,6 +118,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             insertStmt.bindLong(9, rating);
             insertStmt.bindBlob(10, mImageByte);
             insertStmt.bindBlob(11, lImageByte);
+            insertStmt.bindString(12, bm.website);
+            insertStmt.bindString(13, bm.country);
+            insertStmt.bindString(14, bm.brewery);
             insertStmt.executeInsert();
             db.close();
             getInfoFromDb();

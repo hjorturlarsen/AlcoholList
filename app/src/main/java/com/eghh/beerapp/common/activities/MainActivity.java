@@ -11,6 +11,7 @@ import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 import com.eghh.beerapp.common.fragments.have_drunk;
 import com.eghh.beerapp.common.view.SlidingTabLayout;
@@ -32,6 +33,8 @@ public class MainActivity extends SampleActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);    // Removes title bar
         setContentView(R.layout.activity_main);
 
         ViewPager pager = (ViewPager)findViewById(R.id.viewpager);

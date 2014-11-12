@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class BeerInfoActivity extends Activity {
      * Initializes view and variables and GUI objects.
      */
     public void init() {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);    // Removes title bar
         setContentView(R.layout.beer_info);
         Bundle extras = getIntent().getExtras();
         final BeerModel beerModel = extras.getParcelable("beerModel");

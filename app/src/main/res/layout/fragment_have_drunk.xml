@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     android:id="@+id/fragment_favorites">
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/favorites_ListView"
+        android:dividerHeight="5dp"
+        android:showDividers="beginning|middle|end"/>
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -19,13 +26,5 @@
             android:text="@string/have_drunk_empty"
             android:textSize="20dp"/>
     </RelativeLayout>
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/favorites_ListView"
-        android:dividerHeight="5dp"
-        android:showDividers="beginning|middle|end"
-        />
 
 </LinearLayout>

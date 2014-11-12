@@ -133,6 +133,8 @@ public class SearchActivity extends SampleActivityBase {
             lv = (ListView) mView.findViewById(R.id.search_listView);
             dataListAdapter adapter = new dataListAdapter(mContext, output_list);
             lv.setAdapter(adapter);
+
+            lv.setEmptyView(mView.findViewById(R.id.search_empty));
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 /**

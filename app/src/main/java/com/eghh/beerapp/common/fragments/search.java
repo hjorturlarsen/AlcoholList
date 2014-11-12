@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.widget.GridView;
 import android.widget.SearchView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,6 @@ public class search extends Fragment
         super.onActivityCreated(savedInstanceState);
         final View mView = getView().findViewById(R.id.fragment_search);
         final SearchView searchView = (SearchView) mView.findViewById(R.id.search_searchView);
-
 
         searchView.setFocusable(false);
         searchView.setIconifiedByDefault(false);

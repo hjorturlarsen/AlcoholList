@@ -178,9 +178,9 @@ public class SearchActivity extends SampleActivityBase {
                         beerModelArray[6] = "null";
                         beerModelArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
                         beerModelArray[8] = beer.has("labels") ? beer.getJSONObject("labels").getString("large") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
-                        beerModelArray[9] = brewery.getString("website");
-                        beerModelArray[10] = brewery.getJSONArray("locations").getJSONObject(0).getJSONObject("country").getString("displayName");
-                        beerModelArray[11] = brewery.getString("name");
+                        beerModelArray[9] = brewery.has("website") ? brewery.getString("website") : "No website";
+                        beerModelArray[10] = brewery.has("locations") ? brewery.getJSONArray("locations").getJSONObject(0).getJSONObject("country").getString("displayName") : "No location";
+                        beerModelArray[11] = brewery.has("name") ? brewery.getString("name") : "No brewery";
                         BeerModel beerModel = new BeerModel(beerModelArray);
                         beerList.add(beerModel);
                     }

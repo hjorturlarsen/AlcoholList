@@ -15,6 +15,7 @@
     <item name="appGrey" type="color">#333333</item>
     <item name="black" type="color">#000000</item>
     <item name="black_trans" type="color">#34000000</item>
+    <item name="foam" type="color">#FFFFCC</item>
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>

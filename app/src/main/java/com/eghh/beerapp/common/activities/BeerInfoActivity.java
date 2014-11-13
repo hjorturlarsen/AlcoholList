@@ -1,11 +1,14 @@
 package com.eghh.beerapp.common.activities;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -17,6 +20,7 @@ import com.eghh.beerapp.common.fragments.R;
 import com.eghh.beerapp.common.DataBaseHelper;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Team: EGHH
@@ -26,6 +30,7 @@ public class BeerInfoActivity extends Activity {
 
     TextView name, desc, percentage, country, website, brewery;
     NetworkImageView img;
+    ImageView imgv;
     ImageButton btn_rateBeer, btn_tryLater;
     DataBaseHelper dbh = new DataBaseHelper(this);
 
@@ -41,11 +46,59 @@ public class BeerInfoActivity extends Activity {
      */
     public void init() {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);    // Removes title bar
-        setContentView(R.layout.beer_info);
         Bundle extras = getIntent().getExtras();
         final BeerModel beerModel = extras.getParcelable("beerModel");
-
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+
+        //Differnece between search (from API) and list (from DB)
+        String diffString = getIntent().getStringExtra("FromDB");
+        if (diffString != null){
+            //Do something f.x. delete button instead of the add to list buttons
+            setContentView(R.layout.beer_info_rate_unrate);
+            imgv = (ImageView) findViewById(R.id.info_img);
+            byte[] bArr = getIntent().getByteArrayExtra("bArr");// beerModel.mImage.getBytes();
+            imgv.setImageBitmap(BitmapFactory.decodeByteArray(bArr, 0, bArr.length));
+        }
+        else{
+            //Do something else
+            setContentView(R.layout.beer_info);
+            img = (NetworkImageView) findViewById(R.id.info_img);
+            btn_rateBeer = (ImageButton) findViewById(R.id.rate);
+            btn_tryLater = (ImageButton) findViewById(R.id.try_later);
+            img.setImageUrl(beerModel.mImage, imageLoader);
+
+            btn_rateBeer.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            try {
+                                dbh.insertToDb(beerModel, 5);
+                            }
+                            catch (IOException ioe){
+                                ioe.printStackTrace();
+                            }
+                        }
+                    }).start();
+                }
+            });
+            btn_tryLater.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    new Thread(new Runnable() {
+                        public void run() {
+                            try {
+                                dbh.insertToDb(beerModel, null);
+                            }
+                            catch (IOException ioe){
+                                ioe.printStackTrace();
+                            }
+                        }
+                    }).start();
+                }
+            });
+        }
+
         name = (TextView) findViewById(R.id.info_beerName);
         desc = (TextView) findViewById(R.id.info_beerDesc);
         percentage = (TextView) findViewById(R.id.info_beerPercentage);
@@ -53,52 +106,12 @@ public class BeerInfoActivity extends Activity {
         brewery = (TextView) findViewById(R.id.info_beerBrewery);
         website = (TextView) findViewById(R.id.info_beerWebsite);
 
-        img = (NetworkImageView) findViewById(R.id.info_img);
-
-
-        btn_rateBeer = (ImageButton) findViewById(R.id.rate);
-        btn_tryLater = (ImageButton) findViewById(R.id.try_later);
-
         name.setText(beerModel.beerName);
         desc.setText(beerModel.beerDesc);
         percentage.setText("Alcohol " + beerModel.beerPercentage + "% volume");
         country.setText(beerModel.country);
         brewery.setText(beerModel.brewery);
         website.setText(beerModel.website);
-
-        img.setImageUrl(beerModel.mImage, imageLoader);
-
-        btn_rateBeer.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            dbh.insertToDb(beerModel, 5);
-                        }
-                        catch (IOException ioe){
-                            ioe.printStackTrace();
-                        }
-                    }
-                }).start();
-            }
-        });
-        btn_tryLater.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v){
-                new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            dbh.insertToDb(beerModel, null);
-                        }
-                        catch (IOException ioe){
-                            ioe.printStackTrace();
-                        }
-                    }
-                }).start();
-                //onBackPressed();
-            }
-        });
     }
 
 

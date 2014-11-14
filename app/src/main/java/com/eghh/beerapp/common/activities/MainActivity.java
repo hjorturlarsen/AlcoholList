@@ -11,11 +11,13 @@ import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+
+import com.eghh.beerapp.common.fragments.have_drunk;
 import com.eghh.beerapp.common.view.SlidingTabLayout;
 import com.eghh.beerapp.common.fragments.R;
 import com.eghh.beerapp.common.fragments.achievements;
 import com.eghh.beerapp.common.fragments.explore;
-import com.eghh.beerapp.common.fragments.favorites;
 import com.eghh.beerapp.common.fragments.search;
 import com.eghh.beerapp.common.fragments.to_drink;
 
@@ -31,6 +33,8 @@ public class MainActivity extends SampleActivityBase {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);    // Removes title bar
         setContentView(R.layout.activity_main);
 
         ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
@@ -68,7 +72,7 @@ public class MainActivity extends SampleActivityBase {
             }
             else if (i == 1)
             {
-                return favorites.newInstance();
+                return have_drunk.newInstance();
             }
             else if(i == 2)
             {
@@ -92,9 +96,9 @@ public class MainActivity extends SampleActivityBase {
         }
             private int[] res ={
                   R.drawable.i_achive,
-                  R.drawable.i_full_beer,
-                  R.drawable.i_search,
                   R.drawable.i_empty_beer,
+                  R.drawable.i_search,
+                  R.drawable.i_full_beer,
                   R.drawable.i_explore
             };
         @Override

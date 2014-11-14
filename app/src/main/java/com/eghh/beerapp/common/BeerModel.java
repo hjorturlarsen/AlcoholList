@@ -10,8 +10,7 @@ import android.os.Parcelable;
  This class makes a model for each beer that comes up from the search result.
  **/
 public class BeerModel implements Parcelable{
-    public String beerId, beerName, beerDesc, beerPercentage, mImage, lImage, organic, glassName, hasRated;
-    //private String[] allData = new String[8];
+    public String beerId, beerName, beerPercentage, organic, beerDesc, glassName, hasRated, mImage, lImage, website, country, brewery;
 
     /**
      * Constructs a BeerModel from String values
@@ -26,6 +25,9 @@ public class BeerModel implements Parcelable{
         this.hasRated = strings[6];
         this.mImage = strings[7];
         this.lImage = strings[8];
+        this.website = strings[9];
+        this.country = strings[10];
+        this.brewery = strings[11];
     }
 
     /**
@@ -42,7 +44,9 @@ public class BeerModel implements Parcelable{
         this.organic = parcel.readString();
         this.glassName = parcel.readString();
         this.hasRated = parcel.readString();
-
+        this.website = parcel.readString();
+        this.country = parcel.readString();
+        this.brewery = parcel.readString();
     }
 
     @Override
@@ -60,6 +64,9 @@ public class BeerModel implements Parcelable{
         dest.writeString(organic);
         dest.writeString(glassName);
         dest.writeString(hasRated);
+        dest.writeString(website);
+        dest.writeString(country);
+        dest.writeString(brewery);
     }
 
     /**

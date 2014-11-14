@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<string-array name="titles">-->
-        <!--<item>@drawable/i_search</item>-->
-        <!--<item>@drawable/i_search</item>-->
-        <!--<item>@drawable/i_search</item>-->
-        <!--<item>@drawable/i_search</item>-->
-        <!--<item>@drawable/i_search</item>-->
-    <!--</string-array>-->
-
-    <string name="search_hint">Some tasty beer...</string>
-    <string name="search_result"></string>
-    <string name="title_activity_splash">SplashActivity</string>
+    <string name="search_hint">Some tasty beer…</string>
+    <string name="title_activity_splash">BeerApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <string name="to_drink_empty">Here you can add beers that you haven\'t tried yet. Just click the beer mug that is full while looking at a beer.</string>
+    <string name="have_drunk_empty">Here you can add all the beers that you have drunk over your lifetime. Just click the empty beer mug while looking at a beer.</string>
+    <string name="search_empty">Search beers by name, for example: Erdinger.</string>
 </resources>

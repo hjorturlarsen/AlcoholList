@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +20,18 @@ import com.eghh.beerapp.common.DataListAdapter;
 import com.eghh.beerapp.common.activities.BeerInfoActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
+
 /**
- * Class for the 'to drink' tab.
- * Reads "to drink" beers from local datbase and shows results in list view.
+ * Class for the 'favorites' tab.
+ * Gets rated beers from local database and displays them in list view.
  */
-public class to_drink extends Fragment{
-    public static to_drink newInstance()
+public class have_drunk extends Fragment {
+    public static have_drunk newInstance()
     {
-        return new to_drink();
+        return new have_drunk();
     }
 
     @Override
@@ -36,12 +39,13 @@ public class to_drink extends Fragment{
     {
         super.onActivityCreated(savedInstanceState);
 
-        final ArrayList<HashMap<String, Object>> toDrinkList = DataBaseHelper.getToDrinkList();
+        final ArrayList<HashMap<String, Object>> ratedList = DataBaseHelper.getRatedList();
 
-        ListView lv = (ListView) getView().findViewById(R.id.to_drink_ListView);
-        DataListAdapter adapter = new DataListAdapter(getActivity(), toDrinkList);
+
+        ListView lv = (ListView) getView().findViewById(R.id.favorites_ListView);
+        DataListAdapter adapter = new DataListAdapter(getActivity(), ratedList);
         lv.setAdapter(adapter);
-        lv.setEmptyView(getView().findViewById(R.id.to_drink_empty));
+        lv.setEmptyView(getView().findViewById(R.id.have_drunk_empty));
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
              * Responds to click on an item in the search result's listView.
@@ -50,21 +54,21 @@ public class to_drink extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent beerInfo = new Intent(getActivity(), BeerInfoActivity.class);
-                byte[] mArr = (byte[]) toDrinkList.get(position).get("mPic");
-                byte[] lArr = (byte[]) toDrinkList.get(position).get("lPic");
+                byte[] mArr = (byte[]) ratedList.get(position).get("mPic");
+                byte[] lArr = (byte[]) ratedList.get(position).get("lPic");
                 String[] sa = new String[15];
-                sa[0] = (String) toDrinkList.get(position).get("BeerId");
-                sa[1] = (String) toDrinkList.get(position).get("Name");
-                sa[2] = (String) toDrinkList.get(position).get("Abv");
-                sa[3] = (String) toDrinkList.get(position).get("Organic");
-                sa[4] = (String) toDrinkList.get(position).get("Desc");
-                sa[5] = (String) toDrinkList.get(position).get("GlassName");
-                sa[6] = (String) toDrinkList.get(position).get("HasRated");
+                sa[0] = (String) ratedList.get(position).get("BeerId");
+                sa[1] = (String) ratedList.get(position).get("Name");
+                sa[2] = (String) ratedList.get(position).get("Abv");
+                sa[3] = (String) ratedList.get(position).get("Organic");
+                sa[4] = (String) ratedList.get(position).get("Desc");
+                sa[5] = (String) ratedList.get(position).get("GlassName");
+                sa[6] = (String) ratedList.get(position).get("HasRated");
                 sa[7] = "";
                 sa[8] = "";
-                sa[9] = (String) toDrinkList.get(position).get("Website");
-                sa[10] = (String) toDrinkList.get(position).get("Country");
-                sa[11] = (String) toDrinkList.get(position).get("Brewery");
+                sa[9] = (String) ratedList.get(position).get("Website");
+                sa[10] = (String) ratedList.get(position).get("Country");
+                sa[11] = (String) ratedList.get(position).get("Brewery");
 
                 BeerModel beerModel = new BeerModel(sa);
                 beerInfo.putExtra("beerModel", beerModel);
@@ -77,9 +81,9 @@ public class to_drink extends Fragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstaceState)
     {
-        return inflater.inflate(R.layout.fragment_to_drink, container, false);
+        return inflater.inflate(R.layout.fragment_have_drunk, container, false);
     }
 
     @Override

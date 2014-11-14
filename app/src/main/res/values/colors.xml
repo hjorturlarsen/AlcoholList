@@ -11,8 +11,11 @@
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
     <item name="transGrey" type="color">#BF353535</item>
-    <item name="beerYellow" type="color">#F0C030</item>
+    <item name="appBeerYellow" type="color">#fedcac00</item>
+    <item name="appGrey" type="color">#333333</item>
     <item name="black" type="color">#000000</item>
+    <item name="black_trans" type="color">#34000000</item>
+    <item name="foam" type="color">#FFFFCC</item>
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>
@@ -27,11 +30,9 @@
         <item>@color/darkred</item>
     </integer-array>
 
-    <color name="genre">#666666</color>
-    <color name="year">#888888</color>
-    <color name="list_divider">#d9d9d9</color>
-    <color name="list_row_start_color">#ffffff</color>
-    <color name="list_row_end_color">#ffffff</color>
-    <color name="list_row_hover_start_color">#ebeef0</color>
-    <color name="list_row_hover_end_color">#ebeef0</color>
+    <color name="list_divider">#000000</color>
+    <color name="list_row_start_color">#34000000</color>
+    <color name="list_row_end_color">#34000000</color>
+    <color name="list_row_hover_start_color">#34000000</color>
+    <color name="list_row_hover_end_color">#32000000</color>
 </resources>

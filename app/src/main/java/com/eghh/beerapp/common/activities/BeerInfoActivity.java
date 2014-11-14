@@ -1,10 +1,15 @@
 package com.eghh.beerapp.common.activities;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import com.android.volley.toolbox.ImageLoader;
@@ -12,6 +17,10 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.app.AppController;
 import com.eghh.beerapp.common.fragments.R;
+import com.eghh.beerapp.common.DataBaseHelper;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Team: EGHH
@@ -19,9 +28,11 @@ import com.eghh.beerapp.common.fragments.R;
  */
 public class BeerInfoActivity extends Activity {
 
-    TextView name, desc, percentage;
+    TextView name, desc, percentage, country, website, brewery;
     NetworkImageView img;
+    ImageView imgv;
     ImageButton btn_rateBeer, btn_tryLater;
+    DataBaseHelper dbh = new DataBaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +45,73 @@ public class BeerInfoActivity extends Activity {
      * Initializes view and variables and GUI objects.
      */
     public void init() {
-        setContentView(R.layout.beer_info);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);    // Removes title bar
         Bundle extras = getIntent().getExtras();
-        BeerModel beerModel = extras.getParcelable("beerModel");
-
+        final BeerModel beerModel = extras.getParcelable("beerModel");
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+
+        //Differnece between search (from API) and list (from DB)
+        String diffString = getIntent().getStringExtra("FromDB");
+        if (diffString != null){
+            //Do something f.x. delete button instead of the add to list buttons
+            setContentView(R.layout.beer_info_rate_unrate);
+            imgv = (ImageView) findViewById(R.id.info_img);
+            byte[] bArr = getIntent().getByteArrayExtra("bArr");// beerModel.mImage.getBytes();
+            imgv.setImageBitmap(BitmapFactory.decodeByteArray(bArr, 0, bArr.length));
+        }
+        else{
+            //Do something else
+            setContentView(R.layout.beer_info);
+            img = (NetworkImageView) findViewById(R.id.info_img);
+            btn_rateBeer = (ImageButton) findViewById(R.id.rate);
+            btn_tryLater = (ImageButton) findViewById(R.id.try_later);
+            img.setImageUrl(beerModel.mImage, imageLoader);
+
+            btn_rateBeer.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            try {
+                                dbh.insertToDb(beerModel, 5);
+                            }
+                            catch (IOException ioe){
+                                ioe.printStackTrace();
+                            }
+                        }
+                    }).start();
+                }
+            });
+            btn_tryLater.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    new Thread(new Runnable() {
+                        public void run() {
+                            try {
+                                dbh.insertToDb(beerModel, null);
+                            }
+                            catch (IOException ioe){
+                                ioe.printStackTrace();
+                            }
+                        }
+                    }).start();
+                }
+            });
+        }
+
         name = (TextView) findViewById(R.id.info_beerName);
         desc = (TextView) findViewById(R.id.info_beerDesc);
         percentage = (TextView) findViewById(R.id.info_beerPercentage);
-        img = (NetworkImageView) findViewById(R.id.info_img);
-        btn_rateBeer = (ImageButton) findViewById(R.id.rate);
-        btn_tryLater = (ImageButton) findViewById(R.id.try_later);
+        country = (TextView) findViewById(R.id.info_beerCountry);
+        brewery = (TextView) findViewById(R.id.info_beerBrewery);
+        website = (TextView) findViewById(R.id.info_beerWebsite);
 
         name.setText(beerModel.beerName);
         desc.setText(beerModel.beerDesc);
-        percentage.setText(beerModel.beerPercentage);
-        img.setImageUrl(beerModel.mImage, imageLoader);
-
-        btn_rateBeer.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        btn_tryLater.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        percentage.setText("Alcohol " + beerModel.beerPercentage + "% volume");
+        country.setText(beerModel.country);
+        brewery.setText(beerModel.brewery);
+        website.setText(beerModel.website);
     }
 
 

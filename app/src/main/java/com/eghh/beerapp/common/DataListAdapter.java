@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.eghh.beerapp.common.fragments.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,7 +43,7 @@ public class DataListAdapter extends BaseAdapter {
         return position;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
         if(convertView == null){
             LayoutInflater mInflater = (LayoutInflater) ctx
@@ -48,11 +51,12 @@ public class DataListAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.list_row_rated_unrated, null);
         }
 
-        TextView name_text, description_text, percentage_text;
+        final TextView name_text, description_text, percentage_text;
 
         Object picObj = beerList.get(position).get("mPic");
         byte[] picArray = (byte[]) picObj;
         ImageView img = (ImageView) convertView.findViewById(R.id.img2);
+        ImageButton ibutt = (ImageButton) convertView.findViewById(R.id.remove_beer);
 
         name_text = (TextView) convertView.findViewById(R.id.name);
         description_text = (TextView) convertView.findViewById(R.id.description);
@@ -62,6 +66,20 @@ public class DataListAdapter extends BaseAdapter {
         name_text.setText((String) beerList.get(position).get("Name"));
         description_text.setText((String) beerList.get(position).get("Desc"));
         percentage_text.setText("Alc. " + beerList.get(position).get("Abv") + "% vol.");
+        //ibutt.setText("X");
+
+        ibutt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        DataBaseHelper dbh = new DataBaseHelper(ctx);
+                        String bid = (String) beerList.get(position).get("BeerId");
+                        dbh.deleteFromDb(bid);
+                    }
+                }).start();
+            }
+        });
 
         return convertView;
     }

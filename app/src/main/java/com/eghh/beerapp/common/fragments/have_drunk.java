@@ -55,7 +55,7 @@ public class have_drunk extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent beerInfo = new Intent(getActivity(), BeerInfoActivity.class);
                 byte[] mArr = (byte[]) ratedList.get(position).get("mPic");
-                byte[] lArr = (byte[]) ratedList.get(position).get("lPic");
+                //byte[] lArr = (byte[]) ratedList.get(position).get("lPic");
                 String[] sa = new String[15];
                 sa[0] = (String) ratedList.get(position).get("BeerId");
                 sa[1] = (String) ratedList.get(position).get("Name");

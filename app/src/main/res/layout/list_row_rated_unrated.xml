@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp" >
+    android:padding="8dp"
+    android:descendantFocusability="blocksDescendants">
 
     <!-- Thumbnail Image -->
     <!--Will be used to display pic from Db-->
@@ -14,6 +15,17 @@
     android:layout_marginRight="8dp" />
     <!--Will be used to display pic from Db-->
 
+    <ImageButton
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/description"
+        android:layout_alignRight="@+id/percentage"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:id="@+id/remove_beer"
+        android:src="@drawable/i_del"
+        />
+
     <!-- Beer name -->
     <TextView
         android:id="@+id/name"
@@ -22,7 +34,8 @@
         android:layout_alignTop="@+id/img2"
         android:layout_toRightOf="@+id/img2"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:maxLines="1"/>
 
     <!-- Beer description -->
     <TextView

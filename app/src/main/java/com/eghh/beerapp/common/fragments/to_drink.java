@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import com.eghh.beerapp.common.BeerModel;
 import com.eghh.beerapp.common.DataBaseHelper;
 import com.eghh.beerapp.common.DataListAdapter;
@@ -38,10 +36,10 @@ public class to_drink extends Fragment{
 
         final ArrayList<HashMap<String, Object>> toDrinkList = DataBaseHelper.getToDrinkList();
 
-        ListView lv = (ListView) getView().findViewById(R.id.to_drink_ListView);
+        ListView lv = (ListView) getActivity().findViewById(R.id.to_drink_ListView);
         DataListAdapter adapter = new DataListAdapter(getActivity(), toDrinkList);
         lv.setAdapter(adapter);
-        lv.setEmptyView(getView().findViewById(R.id.to_drink_empty));
+        lv.setEmptyView(getActivity().findViewById(R.id.to_drink_empty));
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
              * Responds to click on an item in the search result's listView.

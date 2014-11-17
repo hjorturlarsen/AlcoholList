@@ -1,7 +1,7 @@
 package com.eghh.beerapp.common;
 
 /**
- * Created by gudni on 16.10.2014.
+ * Parses JSON from URL
  */
 import android.util.Log;
 
@@ -21,16 +21,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class JSONParser {
-    static InputStream is = null;
-    static JSONArray jarray = null;
-    static JSONObject jobj = null;
-    static String json = "";
+    static JSONArray jsonArray = null;
+    static JSONObject jsonObject = null;
 
     public JSONParser() {
     }
 
     //Post: Parses json from url and return a array of JSON objects
-    public JSONArray getJSONFromUrl(String url) {
+    public JSONArray getJSONArrayFromUrl(String url) {
 
         StringBuilder builder = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
@@ -57,13 +55,50 @@ public class JSONParser {
         }
 
         try {
-            jobj = new JSONObject(builder.toString());
-            JSONArray jarrayNoData = new JSONArray("[{'noData': 'No beers found'}]");
-            jarray = jobj.has("data") ? jobj.getJSONArray("data") : jarrayNoData;
+            jsonObject = new JSONObject(builder.toString());
+            JSONArray jsonArrayNoData = new JSONArray("[{'noData': 'No beers found'}]");
+            jsonArray = jsonObject.has("data") ? jsonObject.getJSONArray("data") : jsonArrayNoData;
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
         }
 
-        return jarray;
+        return jsonArray;
+    }
+
+    public JSONObject getJSONObjectFromUrl(String url) {
+
+        StringBuilder builder = new StringBuilder();
+        HttpClient client = new DefaultHttpClient();
+        HttpGet httpGet = new HttpGet(url);
+        try {
+            HttpResponse response = client.execute(httpGet);
+            StatusLine statusLine = response.getStatusLine();
+            int statusCode = statusLine.getStatusCode();
+            if (statusCode == 200) {
+                HttpEntity entity = response.getEntity();
+                InputStream content = entity.getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                }
+            } else {
+                Log.e("Error....", "Failed to download file");
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            jsonObject = new JSONObject(builder.toString());
+            JSONObject jsonObjectNoData = new JSONObject("{'noData': 'No beers found'}");
+            jsonObject = jsonObject.has("data") ? jsonObject.getJSONObject("data") : jsonObjectNoData;
+        } catch (JSONException e) {
+            Log.e("JSON Parser", "Error parsing data " + e.toString());
+        }
+
+        return jsonObject;
     }
 }

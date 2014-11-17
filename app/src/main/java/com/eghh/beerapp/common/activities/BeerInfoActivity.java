@@ -3,13 +3,11 @@ package com.eghh.beerapp.common.activities;
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import com.android.volley.toolbox.ImageLoader;
@@ -20,7 +18,6 @@ import com.eghh.beerapp.common.fragments.R;
 import com.eghh.beerapp.common.DataBaseHelper;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * Team: EGHH
@@ -30,7 +27,7 @@ public class BeerInfoActivity extends Activity {
 
     TextView name, desc, percentage, country, website, brewery;
     NetworkImageView img;
-    ImageView imgv;
+    ImageView imageView;
     ImageButton btn_rateBeer, btn_tryLater;
     DataBaseHelper dbh = new DataBaseHelper(this);
 
@@ -38,30 +35,29 @@ public class BeerInfoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        init();
+        Initialize();
     }
 
     /**
      * Initializes view and variables and GUI objects.
      */
-    public void init() {
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);    // Removes title bar
+    public void Initialize() {
         Bundle extras = getIntent().getExtras();
         final BeerModel beerModel = extras.getParcelable("beerModel");
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-        //Differnece between search (from API) and list (from DB)
+        //Handle difference between search (from API) and list (from DB)
         String diffString = getIntent().getStringExtra("FromDB");
         if (diffString != null){
-            //Do something f.x. delete button instead of the add to list buttons
-            setContentView(R.layout.beer_info_rate_unrate);
-            imgv = (ImageView) findViewById(R.id.info_img);
+            //Do something f.ex. delete button instead of the add to list buttons
+            setContentView(R.layout.activity_beer_info_rate_unrate);
+            imageView = (ImageView) findViewById(R.id.info_img);
             byte[] bArr = getIntent().getByteArrayExtra("bArr");// beerModel.mImage.getBytes();
-            imgv.setImageBitmap(BitmapFactory.decodeByteArray(bArr, 0, bArr.length));
+            imageView.setImageBitmap(BitmapFactory.decodeByteArray(bArr, 0, bArr.length));
         }
         else{
             //Do something else
-            setContentView(R.layout.beer_info);
+            setContentView(R.layout.activity_beer_info);
             img = (NetworkImageView) findViewById(R.id.info_img);
             btn_rateBeer = (ImageButton) findViewById(R.id.rate);
             btn_tryLater = (ImageButton) findViewById(R.id.try_later);
@@ -123,6 +119,7 @@ public class BeerInfoActivity extends Activity {
                 onBackPressed();
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

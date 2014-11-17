@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by gudni on 2.11.2014.
+ *
  */
 public class DataListAdapter extends BaseAdapter {
     ArrayList<HashMap<String, Object>> beerList;
@@ -45,7 +45,7 @@ public class DataListAdapter extends BaseAdapter {
         if(convertView == null){
             LayoutInflater mInflater = (LayoutInflater) ctx
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.list_row_rated_unrated, null);
+            convertView = mInflater.inflate(R.layout.listview_row_rated_unrated, null);
         }
 
         TextView name_text, description_text, percentage_text;

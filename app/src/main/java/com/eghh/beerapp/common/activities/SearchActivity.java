@@ -34,10 +34,10 @@ public class SearchActivity extends SampleActivityBase {
     private static final String type = "type";
 
 
-    public void parseJson(Context context, String s, ProgressDialog pd, View view){
+    public void parseJson(Context context, String s, ProgressDialog progressDialog, View view){
         s = s.replace(" ", "+");
         String url = "http://api.brewerydb.com/v2/search?key=0bb957499c324525521a89186b87e785&q=" + s + "&withBreweries=Y";
-        new ProgressTask(context, pd, view).execute(url);
+        new ProgressTask(context, progressDialog, view).execute(url);
     }
 
     /**
@@ -49,10 +49,10 @@ public class SearchActivity extends SampleActivityBase {
         public ProgressDialog mDialog;
         public Context mContext;
         public View mView;
-        public ListView lv;
+        public ListView listView;
 
-        public ProgressTask(Context context, ProgressDialog pd, View view){
-            this.mDialog = pd;
+        public ProgressTask(Context context, ProgressDialog progressDialog, View view){
+            this.mDialog = progressDialog;
             this.mContext = context;
             this.mView = view;
         }
@@ -106,7 +106,7 @@ public class SearchActivity extends SampleActivityBase {
                     if(convertView == null){
                         LayoutInflater mInflater = (LayoutInflater) ctx
                                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-                        convertView = mInflater.inflate(R.layout.list_row, null);
+                        convertView = mInflater.inflate(R.layout.listview_row, null);
                     }
 
                     if(imageLoader == null)
@@ -130,12 +130,12 @@ public class SearchActivity extends SampleActivityBase {
                 }
             }
 
-            lv = (ListView) mView.findViewById(R.id.search_listView);
+            listView = (ListView) mView.findViewById(R.id.search_listView);
             dataListAdapter adapter = new dataListAdapter(mContext, output_list);
-            lv.setAdapter(adapter);
+            listView.setAdapter(adapter);
 
-            lv.setEmptyView(mView.findViewById(R.id.search_empty));
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listView.setEmptyView(mView.findViewById(R.id.search_empty));
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 /**
                  * Responds to click on an item in the search result's listView.
@@ -158,7 +158,7 @@ public class SearchActivity extends SampleActivityBase {
         protected  ArrayList<BeerModel> doInBackground(String... args) {
 
             JSONParser jParser = new JSONParser();
-            JSONArray json = jParser.getJSONFromUrl(args[0]);
+            JSONArray json = jParser.getJSONArrayFromUrl(args[0]);
 
             for (int i = 0; i < json.length(); i++) {
 

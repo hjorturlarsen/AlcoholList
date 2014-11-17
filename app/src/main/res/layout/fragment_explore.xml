@@ -6,44 +6,12 @@
     android:padding="10dp"
     android:id="@+id/fragment_explore">
 
-    <TextView
-        android:id="@+id/achievements_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-
     <Button
+        android:id="@+id/button_random_beers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Recommended beers for you"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Beers near by"
-        android:id="@+id/button2"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bars near by"
-        android:id="@+id/button3"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Certain flavours"
-        android:id="@+id/button4"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Location..."
-        android:id="@+id/button5"
-        android:layout_gravity="center_horizontal" />
+        android:text="Random beers"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button"
+        style="@style/themeButton"/>
 </LinearLayout>

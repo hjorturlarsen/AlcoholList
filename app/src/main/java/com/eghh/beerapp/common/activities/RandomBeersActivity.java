@@ -30,6 +30,7 @@ import java.util.Random;
  */
 public class RandomBeersActivity extends Activity{
 
+    //derp derp
     public ArrayList<BeerModel> random_beers = new ArrayList<BeerModel>();
     GridView gridView;
     NetworkImageView random_beer_image;

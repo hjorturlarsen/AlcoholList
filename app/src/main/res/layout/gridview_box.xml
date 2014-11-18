@@ -18,8 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/random_beer_image"
-        android:textSize="20dp"
+        android:textSize="12sp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textStyle="bold"
-        android:text="Erdinger"/>
+        android:textColor="@color/black"/>
 
 </RelativeLayout>

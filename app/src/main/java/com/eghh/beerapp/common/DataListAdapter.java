@@ -45,7 +45,7 @@ public class DataListAdapter extends BaseAdapter {
         if(convertView == null){
             LayoutInflater mInflater = (LayoutInflater) ctx
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.listView_row_rated_unrated, null);
+            convertView = mInflater.inflate(R.layout.listview_row_rated_unrated, null);
         }
 
         TextView name_text, description_text, percentage_text;

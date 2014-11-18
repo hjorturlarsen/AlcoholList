@@ -201,7 +201,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    //Post: Next time the getInfoFromDb methos is called the ratedList will have
+    //Post: Next time the getInfoFromDb method is called the ratedList will have
     //      one more row than before this method was called.
     //      This method alters 2 column in one row each time.
     public void updateToDrunk(String beerId, int rating) throws SQLiteException{

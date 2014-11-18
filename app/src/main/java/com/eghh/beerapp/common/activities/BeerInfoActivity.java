@@ -110,8 +110,6 @@ public class BeerInfoActivity extends Activity {
         website.setText(beerModel.website);
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

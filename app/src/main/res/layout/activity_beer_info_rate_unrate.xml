@@ -24,6 +24,22 @@
                     android:layout_height="128dp"
                     android:layout_gravity="center"
                     />
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:gravity="center">-->
+
+                    <!--<ImageButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:id="@+id/remove_beer"-->
+                        <!--android:src="@drawable/i_del"/>-->
+
+                <!--</LinearLayout>-->
+
             </LinearLayout>
 
             <TextView

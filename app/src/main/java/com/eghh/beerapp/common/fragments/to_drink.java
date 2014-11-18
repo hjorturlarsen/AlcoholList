@@ -49,7 +49,7 @@ public class to_drink extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent beerInfo = new Intent(getActivity(), BeerInfoActivity.class);
                 byte[] mArr = (byte[]) toDrinkList.get(position).get("mPic");
-                byte[] lArr = (byte[]) toDrinkList.get(position).get("lPic");
+                //byte[] lArr = (byte[]) toDrinkList.get(position).get("lPic");
                 String[] sa = new String[15];
                 sa[0] = (String) toDrinkList.get(position).get("BeerId");
                 sa[1] = (String) toDrinkList.get(position).get("Name");

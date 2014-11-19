@@ -3,6 +3,7 @@ package com.eghh.beerapp.common.activities;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -23,27 +24,32 @@ import com.eghh.beerapp.common.fragments.to_drink;
 
 
 /**
- * A simple launcher activity containing a summary sample description, sample log and a custom
- * {@link android.support.v4.app.Fragment} which can display a view.
- * <p>
- * For devices with displays with a width of 720dp or greater, the sample log is always visible,
- * on other devices it's visibility is controlled by an item on the Action Bar.
+ *
  */
-public class MainActivity extends SampleActivityBase {
+public class MainActivity extends FragmentActivity {
+    ViewPager viewPager;
+    SlidingTabLayout tab;
+    CustomPagerAdapter customPagerAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Initialize();
+    }
+
+    public void Initialize() {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);    // Removes title bar
         setContentView(R.layout.activity_main);
 
-        ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
-        SlidingTabLayout tab = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+        viewPager = (ViewPager)findViewById(R.id.viewpager);
+        tab = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
         tab.setCustomTabView(R.layout.custom_tab, 0);
-        CustomPagerAdapter pagerAdapter = new CustomPagerAdapter(getSupportFragmentManager());
-        pager.setAdapter(pagerAdapter);
-        tab.setViewPager(pager);
-        pager.setCurrentItem(2);
+        customPagerAdapter = new CustomPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(customPagerAdapter);
+        tab.setViewPager(viewPager);
+        viewPager.setCurrentItem(2);
     }
 
 
@@ -94,21 +100,22 @@ public class MainActivity extends SampleActivityBase {
         {
             return 5;
         }
-            private int[] res ={
-                  R.drawable.i_achive,
-                  R.drawable.i_empty_beer,
-                  R.drawable.i_search,
-                  R.drawable.i_full_beer,
-                  R.drawable.i_explore
-            };
+
+        private int[] res ={
+              R.drawable.i_achive,
+              R.drawable.i_empty_beer,
+              R.drawable.i_search,
+              R.drawable.i_full_beer,
+              R.drawable.i_explore
+        };
         @Override
         public CharSequence getPageTitle(int position) {
             Drawable image = getResources().getDrawable(res[position]);
-            image.setBounds(0,0,image.getIntrinsicWidth(), image.getIntrinsicHeight());
-            SpannableString sb = new SpannableString(" ");
-            ImageSpan imgSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);
-            sb.setSpan(imgSpan, 0 , 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            return sb;
+            image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
+            SpannableString spannableString = new SpannableString(" ");
+            ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);
+            spannableString.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            return spannableString;
         }
     }
 }

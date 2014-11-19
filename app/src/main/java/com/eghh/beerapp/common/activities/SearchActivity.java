@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  * Creates a request for the www.brewerydb.com API and sends the request.
  * Gets and displays the results in a list view inside the search tab.
  */
-public class SearchActivity extends SampleActivityBase {
+public class SearchActivity extends FragmentActivity {
     public static ArrayList<BeerModel> beerList = new ArrayList<BeerModel>();
     private static final String type = "type";
 

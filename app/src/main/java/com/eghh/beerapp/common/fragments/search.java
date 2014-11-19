@@ -19,13 +19,13 @@ import com.eghh.beerapp.common.activities.SearchActivity;
  * Lets user type in a search word and sends the search word over to SearchActivity class
  * where it is processed further.
  */
-public class search extends Fragment
-{
+public class search extends Fragment {
+    public Context mContext;
+
     public static search newInstance()
     {
         return new search();
     }
-    public Context mContext;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState)

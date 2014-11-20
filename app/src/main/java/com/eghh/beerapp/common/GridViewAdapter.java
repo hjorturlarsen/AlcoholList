@@ -2,10 +2,12 @@ package com.eghh.beerapp.common;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
@@ -17,16 +19,17 @@ import java.util.ArrayList;
  * Base adapter to display random beers
  */
 public class GridViewAdapter extends BaseAdapter {
-    ArrayList<BeerModel> mRandomBeers;
+    ArrayList<String> mAchieve;
     Context mContext;
+    String achName;
 
-    public GridViewAdapter(Context context, ArrayList<BeerModel> randomBeers) {
+    public GridViewAdapter(Context context, ArrayList<String> achieve) {
         this.mContext = context;
-        this.mRandomBeers = randomBeers;
+        this.mAchieve = achieve;
     }
 
     public int getCount(){
-        return mRandomBeers.size();
+        return mAchieve.size();
     }
 
     public Object getItem(int arg0) {
@@ -44,15 +47,16 @@ public class GridViewAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.gridview_box, null);
         }
 
-        NetworkImageView random_beer_image;
+        ImageView achievements;
         TextView random_beer_name;
-        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+        achName = mAchieve.get(position).replace(" ","");
+        int imageId = mContext.getResources().getIdentifier(achName, "drawable", mContext.getPackageName());
 
-        random_beer_image = (NetworkImageView) convertView.findViewById(R.id.random_beer_image);
+        achievements = (ImageView) convertView.findViewById(R.id.achievement);
         random_beer_name = (TextView) convertView.findViewById(R.id.random_beer_name);
 
-        random_beer_image.setImageUrl(mRandomBeers.get(position).mImage, imageLoader);
-        random_beer_name.setText(mRandomBeers.get(position).beerName);
+        achievements.setImageResource(imageId);
+        random_beer_name.setText(mAchieve.get(position));
 
         return convertView;
     }

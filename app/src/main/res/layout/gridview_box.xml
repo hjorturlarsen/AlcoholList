@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/random_beer_image"
+    <ImageView
+        android:id="@+id/achievement"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_alignParentLeft="true"
@@ -17,7 +17,7 @@
         android:id="@+id/random_beer_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/random_beer_image"
+        android:layout_below="@+id/achievement"
         android:textSize="12sp"
         android:maxLines="1"
         android:ellipsize="end"

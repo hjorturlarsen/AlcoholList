@@ -2,6 +2,7 @@ package com.eghh.beerapp.common;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -28,6 +29,10 @@ import junit.framework.Assert;
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "TestDb";
 //    private static String DB_NAME = "RealDbName"; Don forget to change before deploy
+
+    //Possibly have static boolean array that holds data for achievements...
+    //private static boolean[] achievements22 = {false, false, false, false, false, false};
+    private static ArrayList<String> achievements = new ArrayList<String>();
     private static ArrayList<HashMap<String, Object>> sRatedList;
     private static ArrayList<HashMap<String, Object>> sToDrinkList;
     private static DatabaseImages dataImgHelper = new DatabaseImages();
@@ -47,6 +52,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static ArrayList<HashMap<String, Object>> getToDrinkList(){
         return sToDrinkList;
     }
+
+    public static ArrayList<String> getAchievements(){
+        return achievements;
+    }
+
+//    public void noAchievements(){
+//        achievements.put("5 beers", false);
+//        achievements.put("10 beers", false);
+//        achievements.put("50 beers", false);
+//        achievements.put("German explorer", false);
+//        achievements.put("Czech explorer", false);
+//        achievements.put("Penis", false);
+//    }
 
     //Post: Creates table if it does not exist.
     @Override
@@ -89,7 +107,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 //        insertToDb(bmod, null);
         //---Inserts to DB---
         //updateToDrunk("DBPorn1", 9);
+        //noAchievements();
         getInfoFromDb();
+        setAchievements();
     }
 
     //Post: Data about specific beer has been inserted to the DB
@@ -213,6 +233,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         catch (SQLiteException ex){
             Log.e("Error...", "Failed to delete");
+            //Possibly display some warning to user???
+        }
+    }
+
+    public void setAchievements(){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor curs = db.rawQuery("SELECT * FROM UserData WHERE HasRated = 1", null);
+            int totalDrunk = curs.getCount();
+            db.close();
+            if (totalDrunk >= 5){
+                achievements.add("drunk 5 beers");
+            }
+            if (totalDrunk >= 10){
+                achievements.add("drunk 10 beers");
+            }
+            if (totalDrunk >= 50){
+                achievements.add("drunk 50 beers");
+            }
+
+        }
+        catch (SQLiteException ex){
+            Log.e("Error...", "Failed to set achievements");
             //Possibly display some warning to user???
         }
     }

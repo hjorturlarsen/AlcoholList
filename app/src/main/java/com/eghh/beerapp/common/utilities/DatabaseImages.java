@@ -1,10 +1,7 @@
-package com.eghh.beerapp.common;
+package com.eghh.beerapp.common.utilities;
 
-import android.content.ContentValues;
-import android.graphics.drawable.Drawable;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;

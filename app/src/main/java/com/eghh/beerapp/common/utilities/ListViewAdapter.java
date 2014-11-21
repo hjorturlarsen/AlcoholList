@@ -1,4 +1,4 @@
-package com.eghh.beerapp.common;
+package com.eghh.beerapp.common.utilities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,11 +19,11 @@ import java.util.HashMap;
 /**
  *
  */
-public class DataListAdapter extends BaseAdapter {
+public class ListViewAdapter extends BaseAdapter {
     ArrayList<HashMap<String, Object>> beerList;
     Context ctx;
 
-    public DataListAdapter(Context context, ArrayList<HashMap<String, Object>> output_list){
+    public ListViewAdapter(Context context, ArrayList<HashMap<String, Object>> output_list){
         this.beerList = output_list;
         this.ctx = context;
     }
@@ -53,14 +53,14 @@ public class DataListAdapter extends BaseAdapter {
 
         Object picObj = beerList.get(position).get("mPic");
         byte[] picArray = (byte[]) picObj;
-        ImageView img = (ImageView) convertView.findViewById(R.id.img2);
+        ImageView beer_image = (ImageView) convertView.findViewById(R.id.beer_image);
         ImageButton ibutt = (ImageButton) convertView.findViewById(R.id.remove_beer);
 
-        name_text = (TextView) convertView.findViewById(R.id.name);
-        description_text = (TextView) convertView.findViewById(R.id.description);
-        percentage_text = (TextView) convertView.findViewById(R.id.percentage);
+        name_text = (TextView) convertView.findViewById(R.id.beer_name);
+        description_text = (TextView) convertView.findViewById(R.id.beer_description);
+        percentage_text = (TextView) convertView.findViewById(R.id.beer_abv);
 
-        img.setImageBitmap(BitmapFactory.decodeByteArray(picArray, 0, picArray.length));
+        beer_image.setImageBitmap(BitmapFactory.decodeByteArray(picArray, 0, picArray.length));
         name_text.setText((String) beerList.get(position).get("Name"));
         description_text.setText((String) beerList.get(position).get("Desc"));
         percentage_text.setText("Alc. " + beerList.get(position).get("Abv") + "% vol.");

@@ -1,18 +1,14 @@
 package com.eghh.beerapp.common.fragments;
 
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-
-import com.eghh.beerapp.common.DataBaseHelper;
-import com.eghh.beerapp.common.GridViewAdapter;
+import com.eghh.beerapp.common.utilities.DataBaseHelper;
+import com.eghh.beerapp.common.utilities.GridViewAdapter;
 
 import java.util.ArrayList;
 
@@ -43,18 +39,4 @@ public class achievements extends Fragment
     {
         return inflater.inflate(R.layout.fragment_achievements, container, false);
     }
-
-    @Override
-
-    /**
-     * Locks the screen orientation to Portrait mode.
-     */
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser) {
-            Activity a = getActivity();
-            if(a != null) a.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-    }
-
 }

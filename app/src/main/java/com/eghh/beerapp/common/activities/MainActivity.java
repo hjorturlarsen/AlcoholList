@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import android.view.Window;
 
 import com.eghh.beerapp.common.fragments.have_drunk;
-import com.eghh.beerapp.common.view.SlidingTabLayout;
+import com.eghh.beerapp.common.slidingtabs.SlidingTabLayout;
 import com.eghh.beerapp.common.fragments.R;
 import com.eghh.beerapp.common.fragments.achievements;
 import com.eghh.beerapp.common.fragments.explore;

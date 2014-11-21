@@ -6,7 +6,7 @@
 
     <!-- Thumbnail Image -->
     <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/img"
+        android:id="@+id/beer_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
@@ -14,34 +14,34 @@
 
     <!-- Beer name -->
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/beer_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/img"
-        android:layout_toRightOf="@+id/img"
+        android:layout_alignTop="@+id/beer_image"
+        android:layout_toRightOf="@+id/beer_image"
         android:textSize="20dp"
         android:textStyle="bold" />
 
     <!-- Beer description -->
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/beer_description"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name"
+        android:layout_below="@id/beer_name"
         android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/img"
+        android:layout_toRightOf="@+id/beer_image"
         android:maxLines="3"
         android:ellipsize="end"
         />
 
     <!-- Alcohol percentage -->
     <TextView
-        android:id="@+id/percentage"
+        android:id="@+id/beer_abv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/description"
+        android:layout_below="@id/beer_description"
         android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/img"
+        android:layout_toRightOf="@+id/beer_image"
         android:textSize="15dp"
         android:textStyle="bold"/>
 

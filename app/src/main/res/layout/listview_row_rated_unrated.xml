@@ -8,7 +8,7 @@
     <!-- Thumbnail Image -->
     <!--Will be used to display pic from Db-->
     <ImageView
-    android:id="@+id/img2"
+    android:id="@+id/beer_image"
     android:layout_width="80dp"
     android:layout_height="80dp"
     android:layout_alignParentLeft="true"
@@ -18,8 +18,8 @@
     <ImageButton
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_below="@+id/description"
-        android:layout_alignRight="@+id/percentage"
+        android:layout_below="@+id/beer_description"
+        android:layout_alignRight="@+id/beer_abv"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:id="@+id/remove_beer"
@@ -28,35 +28,35 @@
 
     <!-- Beer name -->
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/beer_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/img2"
-        android:layout_toRightOf="@+id/img2"
+        android:layout_alignTop="@+id/beer_image"
+        android:layout_toRightOf="@+id/beer_image"
         android:textSize="20dp"
         android:textStyle="bold"
         android:maxLines="1"/>
 
     <!-- Beer description -->
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/beer_description"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name"
+        android:layout_below="@id/beer_name"
         android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/img2"
+        android:layout_toRightOf="@+id/beer_image"
         android:maxLines="3"
         android:ellipsize="end"
         />
 
     <!-- Alcohol percentage -->
     <TextView
-        android:id="@+id/percentage"
+        android:id="@+id/beer_abv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/description"
+        android:layout_below="@id/beer_description"
         android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/img2"
+        android:layout_toRightOf="@+id/beer_image"
         android:textSize="15dp"
         android:textStyle="bold"/>
 

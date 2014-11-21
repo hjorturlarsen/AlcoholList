@@ -1,24 +1,16 @@
-package com.eghh.beerapp.common;
+package com.eghh.beerapp.common.utilities;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
-import android.util.Pair;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
-
-import com.eghh.beerapp.common.DatabaseImages;
-
-import junit.framework.Assert;
 
 /**
  Team : EGHH
@@ -38,7 +30,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static DatabaseImages dataImgHelper = new DatabaseImages();
     private static byte[] mImageByte = null;
     private static byte[] lImageByte = null;
-    private Context mContext;
+    Context mContext;
 
     public DataBaseHelper(Context context){
         super(context,DB_NAME,null,1);
@@ -169,7 +161,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         unratedResultSet.moveToFirst();
         String[] cNames = ratedResultSet.getColumnNames();
 
-        while(ratedResultSet.isAfterLast() == false){
+        while(!ratedResultSet.isAfterLast()){
             HashMap<String, Object> map = new HashMap<String, Object>();
             for (String c : cNames){
                 if (c.equals("mPic") || c.equals("lPic")){
@@ -182,7 +174,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             ratedList.add(map);
             ratedResultSet.moveToNext();
         }
-        while(unratedResultSet.isAfterLast() == false){
+        while(!unratedResultSet.isAfterLast()){
             HashMap<String, Object> map = new HashMap<String, Object>();
             for (String c : cNames){
                 if (c.equals("mPic") || c.equals("lPic")){
@@ -198,8 +190,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         setToStatic(ratedList, toDrinkList);
     }
-    //Post: Everytime the getInfoFromDb method is called the 2 static lists are updated
-    //      and can therefore be accessed with correct information everytime
+    //Post: Every time the getInfoFromDb method is called the 2 static lists are updated
+    //      and can therefore be accessed with correct information every time
     public static void setToStatic(ArrayList<HashMap<String, Object>> a1, ArrayList<HashMap<String, Object>> a2){
         if (sRatedList != null && sToDrinkList != null){
             sRatedList.clear();

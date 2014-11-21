@@ -1,17 +1,14 @@
-package com.eghh.beerapp.common;
+package com.eghh.beerapp.common.utilities;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
-import com.eghh.beerapp.common.app.AppController;
+
 import com.eghh.beerapp.common.fragments.R;
 import java.util.ArrayList;
 

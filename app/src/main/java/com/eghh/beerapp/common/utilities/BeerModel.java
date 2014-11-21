@@ -1,4 +1,4 @@
-package com.eghh.beerapp.common;
+package com.eghh.beerapp.common.utilities;
 
 import android.os.Parcel;
 import android.os.Parcelable;

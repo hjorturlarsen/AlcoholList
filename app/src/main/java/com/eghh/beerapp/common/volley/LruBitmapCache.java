@@ -1,4 +1,4 @@
-package com.eghh.beerapp.common.util;
+package com.eghh.beerapp.common.volley;
 
 import com.android.volley.toolbox.ImageLoader.ImageCache;
 

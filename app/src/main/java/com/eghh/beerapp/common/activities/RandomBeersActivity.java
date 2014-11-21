@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.eghh.beerapp.common.BeerModel;
-import com.eghh.beerapp.common.JSONParser;
-import com.eghh.beerapp.common.app.AppController;
+import com.eghh.beerapp.common.utilities.BeerModel;
+import com.eghh.beerapp.common.utilities.JSONParser;
+import com.eghh.beerapp.common.volley.AppController;
 import com.eghh.beerapp.common.fragments.R;
 import org.json.JSONException;
 import org.json.JSONObject;

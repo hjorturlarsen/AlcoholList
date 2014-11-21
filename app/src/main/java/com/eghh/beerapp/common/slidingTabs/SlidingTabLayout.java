@@ -1,4 +1,4 @@
-package com.eghh.beerapp.common.view;
+package com.eghh.beerapp.common.slidingtabs;
 
 import android.content.Context;
 import android.graphics.Typeface;

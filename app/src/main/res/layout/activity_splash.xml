@@ -3,17 +3,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center"
-    tools:context="com.eghh.beerapp.common.activities.SplashActivity"
-    >
+    tools:context="com.eghh.beerapp.common.activities.SplashActivity">
+
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:src="@drawable/splah_screen"
         android:scaleType="fitXY"/>
-
-    <!--<TextView-->
-        <!--android:text="@string/hello_world"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
 
 </LinearLayout>

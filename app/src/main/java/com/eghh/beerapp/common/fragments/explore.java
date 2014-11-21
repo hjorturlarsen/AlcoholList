@@ -1,8 +1,6 @@
 package com.eghh.beerapp.common.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import com.eghh.beerapp.common.activities.BeerInfoActivity;
 import com.eghh.beerapp.common.activities.RandomBeersActivity;
 
 /**
@@ -51,15 +47,5 @@ public class explore extends Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.fragment_explore, container, false);
-    }
-
-    @Override
-    //Locks the screen orientation to Portrait mode.
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser) {
-            Activity a = getActivity();
-            if(a != null) a.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
     }
 }

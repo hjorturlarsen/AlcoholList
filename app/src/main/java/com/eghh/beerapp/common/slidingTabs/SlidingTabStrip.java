@@ -1,7 +1,7 @@
-package com.eghh.beerapp.common.view;
+package com.eghh.beerapp.common.slidingtabs;
 
 /**
- * Created by Hjortur on 10.10.2014.
+ * For sliding tabs
  */
 
 import android.R;

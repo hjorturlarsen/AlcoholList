@@ -1,4 +1,4 @@
-package com.eghh.beerapp.common;
+package com.eghh.beerapp.common.utilities;
 
 /**
  * Parses JSON from URL

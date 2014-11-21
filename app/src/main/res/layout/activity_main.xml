@@ -10,7 +10,7 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
 
-    <com.eghh.beerapp.common.view.SlidingTabLayout
+    <com.eghh.beerapp.common.slidingtabs.SlidingTabLayout
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

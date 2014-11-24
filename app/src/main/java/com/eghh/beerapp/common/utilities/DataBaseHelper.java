@@ -101,7 +101,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //updateToDrunk("DBPorn1", 9);
         //noAchievements();
         getInfoFromDb();
-        setAchievements();
+        //setAchievements();
     }
 
     //Post: Data about specific beer has been inserted to the DB
@@ -189,6 +189,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
 
         setToStatic(ratedList, toDrinkList);
+        setAchievements();
     }
     //Post: Every time the getInfoFromDb method is called the 2 static lists are updated
     //      and can therefore be accessed with correct information every time
@@ -231,6 +232,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public void setAchievements(){
         try{
+            achievements.clear();
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor curs = db.rawQuery("SELECT * FROM UserData WHERE HasRated = 1", null);
             int totalDrunk = curs.getCount();

@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class achievements extends Fragment
 {
-    final ArrayList<String> test = DataBaseHelper.getAchievements();
+    final ArrayList<String> achieveList = DataBaseHelper.getAchievements();
     public static achievements newInstance()
     {
         return new achievements();
@@ -30,7 +30,7 @@ public class achievements extends Fragment
         super.onActivityCreated(savedInstanceState);
 
         GridView gv = (GridView) getView().findViewById(R.id.ach_gridview);
-        GridViewAdapter gridAdapter = new GridViewAdapter(getActivity(), test);
+        GridViewAdapter gridAdapter = new GridViewAdapter(getActivity(), achieveList);
         gv.setAdapter(gridAdapter);
     }
 

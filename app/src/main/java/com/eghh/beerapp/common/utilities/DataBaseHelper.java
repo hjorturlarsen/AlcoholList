@@ -235,18 +235,46 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             achievements.clear();
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor curs = db.rawQuery("SELECT * FROM UserData WHERE HasRated = 1", null);
+            Cursor organic = db.rawQuery("SELECT * FROM Userdata WHERE Organic = 1", null);
             int totalDrunk = curs.getCount();
+            int organicDrunk = organic.getCount();
             db.close();
+            if (totalDrunk >= 1){
+                achievements.add("drunk 1 beers");
+            }
             if (totalDrunk >= 5){
                 achievements.add("drunk 5 beers");
             }
             if (totalDrunk >= 10){
                 achievements.add("drunk 10 beers");
             }
+            if (totalDrunk >= 20){
+                achievements.add("drunk 20 beers");
+            }
             if (totalDrunk >= 50){
                 achievements.add("drunk 50 beers");
             }
-
+            if (totalDrunk >= 100){
+                achievements.add("drunk 100 beers");
+            }
+            if (organicDrunk >= 1){
+                achievements.add("drunk 1 organic");
+            }
+            if (organicDrunk >= 5){
+                achievements.add("drunk 5 organic");
+            }
+            if (organicDrunk >= 10){
+                achievements.add("drunk 10 organic");
+            }
+            if (organicDrunk >= 20){
+                achievements.add("drunk 20 organic");
+            }
+            if (organicDrunk >= 50){
+                achievements.add("drunk 50 organic");
+            }
+            if (organicDrunk >= 100){
+                achievements.add("drunk 100 organic");
+            }
         }
         catch (SQLiteException ex){
             Log.e("Error...", "Failed to set achievements");

@@ -128,7 +128,7 @@ public class BeerInfoActivity extends FragmentActivity {
         }
         beer_name.setText(beerModel.beerName);
         beer_description.setText(beerModel.beerDesc);
-        beer_abv.setText("Volume: " + beerModel.beerPercentage + "%");
+        beer_abv.setText("Abv: " + beerModel.beerPercentage + "%");
         beer_country.setText("Country: " + beerModel.country);
         beer_brewery.setText("Brewery: " + beerModel.brewery);
         beer_website.setText("Website: " + beerModel.website);

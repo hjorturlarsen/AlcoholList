@@ -236,44 +236,72 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor curs = db.rawQuery("SELECT * FROM UserData WHERE HasRated = 1", null);
             Cursor organic = db.rawQuery("SELECT * FROM UserData WHERE Organic = 1", null);
+            Cursor german = db.rawQuery("SELECT * FROM UserData WHERE Country = 'Germany'", null);
+            Cursor austrian = db.rawQuery("SELECT * FROM UserData WHERE Country = 'Austria'", null);
+            Cursor belgian = db.rawQuery("SELECT * FROM UserData WHERE Country = 'Belgian'", null);
+            Cursor croatian = db.rawQuery("SELECT * FROM UserData WHERE Country = 'Croatian'", null);
+
             int totalDrunk = curs.getCount();
             int organicDrunk = organic.getCount();
+            int germanDrunk = german.getCount();
+            int austrianDrunk = austrian.getCount();
+            int belgianDrunk = belgian.getCount();
+            int croatianDrunk = croatian.getCount();
             db.close();
+
             if (totalDrunk >= 1){
                 achievements.add("drunk 1 beers");
+            }
+            if (organicDrunk >= 1){
+                achievements.add("drunk 1 organic beers");
             }
             if (totalDrunk >= 5){
                 achievements.add("drunk 5 beers");
             }
+            if (organicDrunk >= 5){
+                achievements.add("drunk 5 organic beers");
+            }
+            if (germanDrunk >= 5){
+                achievements.add("drunk 5 german beers");
+            }
             if (totalDrunk >= 10){
                 achievements.add("drunk 10 beers");
+            }
+            if (organicDrunk >= 10){
+                achievements.add("drunk 10 organic beers");
             }
             if (totalDrunk >= 20){
                 achievements.add("drunk 20 beers");
             }
+            if (germanDrunk >= 10){
+                achievements.add("drunk 10 german beers");
+            }
+            if (organicDrunk >= 20){
+                achievements.add("drunk 20 organic beers");
+            }
+            if (austrianDrunk >= 5) {
+                achievements.add("drunk 5 austrian beers");
+            }
             if (totalDrunk >= 50){
                 achievements.add("drunk 50 beers");
             }
-            if (totalDrunk >= 100){
-                achievements.add("drunk 100 beers");
-            }
-            if (organicDrunk >= 1){
-                achievements.add("drunk 1 organic");
-            }
-            if (organicDrunk >= 5){
-                achievements.add("drunk 5 organic");
-            }
-            if (organicDrunk >= 10){
-                achievements.add("drunk 10 organic");
-            }
-            if (organicDrunk >= 20){
-                achievements.add("drunk 20 organic");
+            if (austrianDrunk >= 10){
+                achievements.add("drunk 10 austrian beers");
             }
             if (organicDrunk >= 50){
-                achievements.add("drunk 50 organic");
+                achievements.add("drunk 50 organic beers");
+            }
+            if (croatianDrunk >= 5){
+                achievements.add("drunk 5 croatian beers");
+            }
+            if (belgianDrunk >= 20){
+                achievements.add("drunk 20 belgian beers");
             }
             if (organicDrunk >= 100){
-                achievements.add("drunk 100 organic");
+                achievements.add("drunk 100 organic beers");
+            }
+            if (totalDrunk >= 100){
+                achievements.add("drunk 100 beers");
             }
         }
         catch (SQLiteException ex){

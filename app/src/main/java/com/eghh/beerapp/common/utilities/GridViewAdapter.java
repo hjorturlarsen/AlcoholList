@@ -53,6 +53,7 @@ public class GridViewAdapter extends BaseAdapter {
         random_beer_name = (TextView) convertView.findViewById(R.id.random_beer_name);
 
         achievements.setImageResource(imageId);
+        random_beer_name.setAllCaps(true);
         random_beer_name.setText(mAchieve.get(position));
 
         return convertView;

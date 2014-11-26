@@ -18,35 +18,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:gravity="center"
                 android:padding="5dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/beer_rate"
+                    android:layout_marginRight="25dp"
+                    android:src="@drawable/i_empty_beer"/>
 
                 <com.android.volley.toolbox.NetworkImageView
                     android:id="@+id/beer_image"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     />
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:gravity="center">
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/beer_rate"
-                        android:src="@drawable/i_empty_beer"/>
-
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/beer_try_later"
-                        android:src="@drawable/i_full_beer"/>
-                </LinearLayout>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/beer_try_later"
+                    android:layout_marginLeft="25dp"
+                    android:src="@drawable/i_full_beer"/>
 
             </LinearLayout>
 
@@ -55,33 +49,39 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/beer_name"
                 android:textSize="25sp"
+                android:gravity="center"
                 android:textAlignment="center"
                 android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/beer_abv"/>
             
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/beer_country"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autoLink="web"
+                android:gravity="center"
                 android:id="@+id/beer_website"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/beer_brewery"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:id="@+id/beer_description"
                 android:textSize="20sp"/>
 

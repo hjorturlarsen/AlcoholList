@@ -62,6 +62,15 @@ public class GetRandomBeer extends AsyncTask<String, Void, BeerModel> {
         }
         catch (JSONException e) {
             e.printStackTrace();
+            beerModelArray[4] = "No description";
+            beerModelArray[5] = "No specific glassware";
+            beerModelArray[6] = "null";
+            beerModelArray[7] = "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
+            beerModelArray[8] = "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
+            beerModelArray[9] = "No website";
+            beerModelArray[10] = "No location";
+            beerModelArray[11] = "No brewery";
+            random_beer = new BeerModel(beerModelArray);
         }
         return random_beer;
     }

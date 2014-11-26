@@ -13,7 +13,11 @@ import com.eghh.beerapp.common.utilities.BeerModel;
 import com.eghh.beerapp.common.utilities.DataBaseHelper;
 import com.eghh.beerapp.common.utilities.ListViewAdapter;
 import com.eghh.beerapp.common.activities.BeerInfoActivity;
+import com.eghh.beerapp.common.utilities.HashmapComparator;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 

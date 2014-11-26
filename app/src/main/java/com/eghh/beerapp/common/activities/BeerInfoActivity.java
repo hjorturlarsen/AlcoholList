@@ -1,13 +1,22 @@
 package com.eghh.beerapp.common.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.BitmapFactory;
+import android.media.Rating;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import com.android.volley.toolbox.ImageLoader;
@@ -80,15 +89,30 @@ public class BeerInfoActivity extends FragmentActivity {
             button_rate_beer.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new Thread(new Runnable() {
-                        public void run() {
-                            try {
-                                dataBaseHelper.insertToDb(beerModel, 5);
-                            } catch (IOException ioe) {
-                                ioe.printStackTrace();
-                            }
+                    LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View popupView = layoutInflater.inflate(R.layout.popupwindow_rating, null);
+                    final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                    final RatingBar rating = (RatingBar)popupView.findViewById(R.id.rating_bar);
+                    final Button submitRating = (Button)popupView.findViewById(R.id.submit_rating);
+                    submitRating.setOnClickListener(new Button.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            double rate = rating.getRating();
+                            final int beerRate = (int)Math.floor(rate*2);
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    try {
+                                        dataBaseHelper.insertToDb(beerModel, beerRate);
+                                    } catch (IOException ioe) {
+                                        ioe.printStackTrace();
+                                    }
+                                }
+                            }).start();
+                            popupWindow.dismiss();
                         }
-                    }).start();
+                    });
+                    popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
                 }
             });
             button_try_later.setOnClickListener(new OnClickListener() {

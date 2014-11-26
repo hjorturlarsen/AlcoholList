@@ -15,6 +15,16 @@
     android:layout_marginRight="8dp" />
     <!--Will be used to display pic from Db-->
 
+    <!-- Beer rating -->
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/beer_image"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textStyle="bold"/>
+
     <ImageButton
         android:layout_width="25dp"
         android:layout_height="25dp"

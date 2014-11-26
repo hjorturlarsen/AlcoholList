@@ -10,6 +10,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -187,7 +188,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             toDrinkList.add(map);
             unratedResultSet.moveToNext();
         }
-
+        Collections.sort(ratedList, new HashmapComparator("Rating"));
         setToStatic(ratedList, toDrinkList);
         setAchievements();
     }

@@ -49,7 +49,7 @@ public class ListViewAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.listview_row_rated_unrated, null);
         }
 
-        final TextView name_text, description_text, percentage_text;
+        final TextView name_text, description_text, percentage_text, rating_text;
 
         Object picObj = beerList.get(position).get("mPic");
         byte[] picArray = (byte[]) picObj;
@@ -59,11 +59,15 @@ public class ListViewAdapter extends BaseAdapter {
         name_text = (TextView) convertView.findViewById(R.id.beer_name);
         description_text = (TextView) convertView.findViewById(R.id.beer_description);
         percentage_text = (TextView) convertView.findViewById(R.id.beer_abv);
+        rating_text = (TextView) convertView.findViewById(R.id.rating);
 
         beer_image.setImageBitmap(BitmapFactory.decodeByteArray(picArray, 0, picArray.length));
         name_text.setText((String) beerList.get(position).get("Name"));
         description_text.setText((String) beerList.get(position).get("Desc"));
         percentage_text.setText("Alc. " + beerList.get(position).get("Abv") + "% vol.");
+        String actualRate = (String) beerList.get(position).get("Rating");
+        String rate = actualRate.equals("-1") ? "" : actualRate;
+        rating_text.setText(rate);
         //ibutt.setText("X");
 
         ibutt.setOnClickListener(new View.OnClickListener() {

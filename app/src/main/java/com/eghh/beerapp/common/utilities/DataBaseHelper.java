@@ -235,7 +235,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             achievements.clear();
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor curs = db.rawQuery("SELECT * FROM UserData WHERE HasRated = 1", null);
-            Cursor organic = db.rawQuery("SELECT * FROM Userdata WHERE Organic = 1", null);
+            Cursor organic = db.rawQuery("SELECT * FROM UserData WHERE Organic = 1", null);
             int totalDrunk = curs.getCount();
             int organicDrunk = organic.getCount();
             db.close();

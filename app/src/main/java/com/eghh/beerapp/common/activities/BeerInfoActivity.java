@@ -3,6 +3,7 @@ package com.eghh.beerapp.common.activities;
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,7 +22,7 @@ import java.io.IOException;
  * Team: EGHH
  * Displays more information about a beer that has been clicked on in the search result list view.
  */
-public class BeerInfoActivity extends Activity {
+public class BeerInfoActivity extends FragmentActivity {
 
     TextView beer_name, beer_description, beer_abv, beer_country, beer_website, beer_brewery;
     NetworkImageView beer_image;

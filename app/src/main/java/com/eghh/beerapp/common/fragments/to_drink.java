@@ -22,7 +22,7 @@ import java.util.HashMap;
  */
 public class to_drink extends Fragment{
 
-    ArrayList<HashMap<String, Object>> drunken_beers;
+    public ArrayList<HashMap<String, Object>> to_drink;
     ListView listView;
     ListViewAdapter listViewAdapter;
 
@@ -32,16 +32,17 @@ public class to_drink extends Fragment{
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState)
-    {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Initialize();
+    }
 
-        drunken_beers = DataBaseHelper.getToDrinkList();
-        listView = (ListView) getActivity().findViewById(R.id.to_drink_ListView);
-        listViewAdapter = new ListViewAdapter(getActivity(), drunken_beers);
+    public void Initialize() {
+        to_drink = DataBaseHelper.getToDrinkList();
+        listView = (ListView) getView().findViewById(R.id.to_drink_ListView);
+        listViewAdapter = new ListViewAdapter(getActivity(), to_drink);
         listView.setAdapter(listViewAdapter);
         listView.setEmptyView(getActivity().findViewById(R.id.to_drink_empty));
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
              * Responds to click on an item in the search result's listView.
@@ -49,27 +50,27 @@ public class to_drink extends Fragment{
              */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent beerInfo = new Intent(getActivity(), BeerInfoActivity.class);
-                byte[] mArr = (byte[]) drunken_beers.get(position).get("mPic");
-                String[] sa = new String[15];
-                sa[0] = (String) drunken_beers.get(position).get("BeerId");
-                sa[1] = (String) drunken_beers.get(position).get("Name");
-                sa[2] = (String) drunken_beers.get(position).get("Abv");
-                sa[3] = (String) drunken_beers.get(position).get("Organic");
-                sa[4] = (String) drunken_beers.get(position).get("Desc");
-                sa[5] = (String) drunken_beers.get(position).get("GlassName");
-                sa[6] = (String) drunken_beers.get(position).get("HasRated");
-                sa[7] = "";
-                sa[8] = "";
-                sa[9] = (String) drunken_beers.get(position).get("Website");
-                sa[10] = (String) drunken_beers.get(position).get("Country");
-                sa[11] = (String) drunken_beers.get(position).get("Brewery");
+                Intent beerInfoActivity = new Intent(getActivity(), BeerInfoActivity.class);
+                byte[] mArr = (byte[]) to_drink.get(position).get("mPic");
+                String[] array_beer_model = new String[15];
+                array_beer_model[0] = (String) to_drink.get(position).get("beerId");
+                array_beer_model[1] = (String) to_drink.get(position).get("Name");
+                array_beer_model[2] = (String) to_drink.get(position).get("Abv");
+                array_beer_model[3] = (String) to_drink.get(position).get("Organic");
+                array_beer_model[4] = (String) to_drink.get(position).get("Desc");
+                array_beer_model[5] = (String) to_drink.get(position).get("GlassName");
+                array_beer_model[6] = (String) to_drink.get(position).get("HasRated");
+                array_beer_model[7] = "";
+                array_beer_model[8] = "";
+                array_beer_model[9] = (String) to_drink.get(position).get("Website");
+                array_beer_model[10] = (String) to_drink.get(position).get("Country");
+                array_beer_model[11] = (String) to_drink.get(position).get("Brewery");
 
-                BeerModel beerModel = new BeerModel(sa);
-                beerInfo.putExtra("beerModel", beerModel);
-                beerInfo.putExtra("bArr", mArr);
-                beerInfo.putExtra("FromDB", "FromDB");
-                getActivity().startActivity(beerInfo);
+                BeerModel beerModel = new BeerModel(array_beer_model);
+                beerInfoActivity.putExtra("beerModel", beerModel);
+                beerInfoActivity.putExtra("bArr", mArr);
+                beerInfoActivity.putExtra("FromDB", "FromDB");
+                getActivity().startActivity(beerInfoActivity);
             }
         });
     }

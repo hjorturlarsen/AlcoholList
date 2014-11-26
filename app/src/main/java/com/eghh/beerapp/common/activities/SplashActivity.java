@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
@@ -11,7 +12,7 @@ import android.view.WindowManager;
 import com.eghh.beerapp.common.utilities.DataBaseHelper;
 import com.eghh.beerapp.common.fragments.R;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

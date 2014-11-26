@@ -36,6 +36,7 @@ public class RandomBeersActivity extends FragmentActivity{
     {
         super.onCreate(savedInstanceState);
         Initialize();
+        get_random_beer();
     }
 
     /**
@@ -51,8 +52,6 @@ public class RandomBeersActivity extends FragmentActivity{
         beer_country = (TextView) findViewById(R.id.beer_country);
         beer_brewery = (TextView) findViewById(R.id.beer_brewery);
         beer_image = (NetworkImageView) findViewById(R.id.beer_image);
-
-        get_random_beer();
     }
 
     /**

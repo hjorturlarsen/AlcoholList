@@ -21,16 +21,13 @@ import java.util.HashMap;
  * Class for the 'favorites' tab.
  * Gets rated beers from local database and displays them in list view.
  */
-public class have_drunk extends Fragment {
+public class have_drunk extends Fragment{
 
     ListView listView;
     ListViewAdapter listViewAdapter;
-    ArrayList<HashMap<String, Object>> rated_beers;
+    public ArrayList<HashMap<String, Object>> rated_beers;
 
-
-
-    public static have_drunk newInstance()
-    {
+    public static have_drunk newInstance(){
         return new have_drunk();
     }
 

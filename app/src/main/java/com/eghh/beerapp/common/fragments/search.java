@@ -112,7 +112,6 @@ public class search extends Fragment {
          * objects.
          */
         protected  ArrayList<BeerModel> doInBackground(String... args) {
-
             JSONParser jsonParser = new JSONParser();
             JSONArray jsonArray = jsonParser.getJSONArrayFromUrl(args[0]);
 

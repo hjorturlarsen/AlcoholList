@@ -11,14 +11,10 @@
         android:label="@string/app_name"
         android:theme="@style/beerTheme" >
 
-
-
         <activity
             android:name="com.eghh.beerapp.common.activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
-
-
         </activity>
 
         <activity
@@ -37,11 +33,14 @@
             android:parentActivityName="com.eghh.beerapp.common.activities.MainActivity"
             android:screenOrientation="portrait">
         </activity>
+
         <activity
             android:label="@string/app_name"
             android:name="com.eghh.beerapp.common.activities.RandomBeersActivity"
             android:parentActivityName="com.eghh.beerapp.common.activities.MainActivity"
             android:screenOrientation="portrait">
         </activity>
+
     </application>
+
 </manifest>

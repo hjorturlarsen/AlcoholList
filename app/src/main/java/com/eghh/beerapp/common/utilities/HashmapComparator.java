@@ -6,7 +6,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 /**
- * Created by gudni on 26.11.2014.
+ * Comparator is a helper class used to order beer list in ascending order
+ * using the Collections.sort method
  */
 public class HashmapComparator implements Comparator<HashMap<String, Object>>
 {
@@ -17,6 +18,7 @@ public class HashmapComparator implements Comparator<HashMap<String, Object>>
         this.key = key;
     }
 
+    // Compares two integer values (ratings) and determines where in the list to place the beer
     public int compare(HashMap<String, Object> first, HashMap<String, Object> second)
     {
         String firstValue = (String) first.get(key);

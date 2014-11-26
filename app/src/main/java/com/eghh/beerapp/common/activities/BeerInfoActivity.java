@@ -1,11 +1,7 @@
 package com.eghh.beerapp.common.activities;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.graphics.BitmapFactory;
-import android.media.Rating;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;

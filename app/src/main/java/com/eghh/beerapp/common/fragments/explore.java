@@ -1,6 +1,5 @@
 package com.eghh.beerapp.common.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import com.eghh.beerapp.common.activities.RandomBeersActivity;
+
+import com.eghh.beerapp.common.utilities.GetRandomBeer;
 
 /**
  * Class for the 'explore' tab.
@@ -37,8 +37,8 @@ public class explore extends Fragment
         btn_random_beers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), RandomBeersActivity.class);
-                getActivity().startActivity(intent);
+                String request_URL = "http://api.brewerydb.com/v2/beer/random?key=0bb957499c324525521a89186b87e785&withBreweries=Y";
+                new GetRandomBeer(getActivity()).execute(request_URL);
             }
         });
     }

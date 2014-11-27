@@ -16,6 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import com.eghh.beerapp.common.utilities.BeerModel;
 import com.eghh.beerapp.common.utilities.DataBaseHelper;
@@ -122,7 +123,8 @@ public class have_drunk extends Fragment{
                 convertView = mInflater.inflate(R.layout.listview_row_rated_unrated, null);
             }
 
-            final TextView name_text, description_text, percentage_text, rating_text;
+            final TextView name_text, description_text, percentage_text;
+            final RatingBar ratingBar;
 
             Object picObj = beerList.get(position).get("mPic");
             byte[] picArray = (byte[]) picObj;
@@ -132,15 +134,18 @@ public class have_drunk extends Fragment{
             name_text = (TextView) convertView.findViewById(R.id.beer_name);
             description_text = (TextView) convertView.findViewById(R.id.beer_description);
             percentage_text = (TextView) convertView.findViewById(R.id.beer_abv);
-            rating_text = (TextView) convertView.findViewById(R.id.beer_rating);
+            ratingBar = (RatingBar) convertView.findViewById(R.id.beer_rating);
 
             beer_image.setImageBitmap(BitmapFactory.decodeByteArray(picArray, 0, picArray.length));
             name_text.setText((String) beerList.get(position).get("Name"));
             description_text.setText((String) beerList.get(position).get("Desc"));
             percentage_text.setText("Alc. " + beerList.get(position).get("Abv") + "% vol.");
+            ratingBar.setVisibility(View.VISIBLE);
             String actualRate = (String) beerList.get(position).get("Rating");
-            String rate = actualRate.equals("-1") ? "" : actualRate;
-            rating_text.setText(rate);
+            String rate = actualRate.equals("-1") ? "0" : actualRate;
+            Float rate_float = Float.parseFloat(rate);
+            ratingBar.setRating(rate_float/2);
+
 
             button_delete.setOnClickListener(new View.OnClickListener() {
                 @Override

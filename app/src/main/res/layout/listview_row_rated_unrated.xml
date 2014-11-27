@@ -16,14 +16,19 @@
     <!--Will be used to display pic from Db-->
 
     <!-- Beer rating -->
-    <TextView
-        android:id="@+id/beer_rating"
-        android:layout_width="88dp"
+
+    <RatingBar
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/beer_image"
-        android:textSize="20dp"
+        android:id="@+id/beer_rating"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:focusable="false"
         android:gravity="center"
-        android:textStyle="bold"/>
+        android:layout_below="@+id/beer_image"
+        android:visibility="gone"
+        style="?android:attr/ratingBarStyleSmall"
+        />
 
     <ImageButton
         android:layout_width="25dp"

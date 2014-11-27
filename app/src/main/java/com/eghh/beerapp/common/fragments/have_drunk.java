@@ -17,11 +17,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.eghh.beerapp.common.utilities.BeerModel;
 import com.eghh.beerapp.common.utilities.DataBaseHelper;
 import com.eghh.beerapp.common.activities.BeerInfoActivity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

@@ -131,8 +131,8 @@ public class search extends Fragment {
                         beerModelArray[4] = beer.has("style") ? beer.getJSONObject("style").getString("description") : beer.getString("description");
                         beerModelArray[5] = beer.has("glass") ? beer.getJSONObject("glass").getString("name") : "No specific glassware";
                         beerModelArray[6] = "null";
-                        beerModelArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
-                        beerModelArray[8] = beer.has("labels") ? beer.getJSONObject("labels").getString("large") : "http://i240.photobucket.com/albums/ff100/turta_/beer_PNG2330_zpsa1794501.png";
+                        beerModelArray[7] = beer.has("labels") ? beer.getJSONObject("labels").getString("medium") : "http://i44.photobucket.com/albums/f7/GilliGold/ic_launcher_zps7171f199.png~original";
+                        beerModelArray[8] = beer.has("labels") ? beer.getJSONObject("labels").getString("large") : "http://i44.photobucket.com/albums/f7/GilliGold/ic_launcher_zps7171f199.png~original";
                         beerModelArray[9] = brewery.has("website") ? brewery.getString("website") : "No website";
                         beerModelArray[10] = brewery.has("locations") ? brewery.getJSONArray("locations").getJSONObject(0).getJSONObject("country").getString("displayName") : "No location";
                         beerModelArray[11] = brewery.has("name") ? brewery.getString("name") : "No brewery";

@@ -17,8 +17,8 @@
 
     <!-- Beer rating -->
     <TextView
-        android:id="@+id/rating"
-        android:layout_width="100dp"
+        android:id="@+id/beer_rating"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/beer_image"
         android:textSize="20dp"
